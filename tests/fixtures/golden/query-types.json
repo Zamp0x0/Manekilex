@@ -1,0 +1,122 @@
+[
+ {
+  "text": "",
+  "type": "empty"
+ },
+ {
+  "text": "   ",
+  "type": "empty"
+ },
+ {
+  "text": "bank",
+  "type": "word"
+ },
+ {
+  "text": "Bank",
+  "type": "word"
+ },
+ {
+  "text": "serendipity",
+  "type": "word"
+ },
+ {
+  "text": "don't",
+  "type": "word"
+ },
+ {
+  "text": "rock'n'roll",
+  "type": "word"
+ },
+ {
+  "text": "e-mail",
+  "type": "word"
+ },
+ {
+  "text": "U.S.",
+  "type": "sentence"
+ },
+ {
+  "text": "take off",
+  "type": "phrase"
+ },
+ {
+  "text": "look forward to",
+  "type": "phrase"
+ },
+ {
+  "text": "in spite of the weather",
+  "type": "phrase"
+ },
+ {
+  "text": "useEffect",
+  "type": "code_term"
+ },
+ {
+  "text": "snake_case_name",
+  "type": "code_term"
+ },
+ {
+  "text": "Array.prototype.map",
+  "type": "code_term"
+ },
+ {
+  "text": "npm install --save-dev",
+  "type": "phrase"
+ },
+ {
+  "text": "<div class=\"x\">",
+  "type": "phrase"
+ },
+ {
+  "text": "HTTP/2",
+  "type": "word"
+ },
+ {
+  "text": "42",
+  "type": "phrase"
+ },
+ {
+  "text": "3.14 meters",
+  "type": "sentence"
+ },
+ {
+  "text": "银行",
+  "type": "empty"
+ },
+ {
+  "text": "银行 bank",
+  "type": "word"
+ },
+ {
+  "text": "The committee postponed the vote.",
+  "type": "phrase"
+ },
+ {
+  "text": "the committee postponed the vote until the next quarterly meeting of the board",
+  "type": "sentence"
+ },
+ {
+  "text": "Is this a question?",
+  "type": "phrase"
+ },
+ {
+  "text": "Wait! Stop!",
+  "type": "sentence"
+ },
+ {
+  "text": "It rained. We stayed inside and read books all afternoon long.",
+  "type": "sentence"
+ },
+ {
+  "text": "a a a a a a a a a a a a a a a a a a a a …(399 chars)",
+  "type": "sentence"
+ },
+ {
+  "text": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx…(5000 chars)",
+  "type": "too_long"
+ },
+ {
+  "text": "https://example.com/path?q=1",
+  "type": "sentence"
+ }
+]

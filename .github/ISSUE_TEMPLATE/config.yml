@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 安全漏洞 / Security vulnerability
+    url: https://github.com/Zamp0x0/Manekilex/security/advisories/new
+    about: 请通过私密漏洞报告提交，不要公开描述（见 SECURITY.md）。

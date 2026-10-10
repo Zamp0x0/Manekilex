@@ -1,0 +1,66 @@
+# ── 依赖 ──────────────────────────────────────────────────────────────────────
+node_modules/
+
+# ── 词典原始数据（体积大，不适合提交）────────────────────────────────────────
+# ecdict.csv 约 63MB，不入库
+# 重新构建词典：npm run build:dictionary（需先手动下载 ecdict.csv 到 dic/）
+# 下载地址：https://github.com/skywind3000/ECDICT/releases
+dic/ecdict.csv
+
+# ── 构建产物（可选：保留让用户直接使用，不需要重新 build）────────────────────
+# 如果你希望 clone 后能直接加载扩展，保持注释状态（即提交 dictionary_core.json）
+# 如果你只想提交源码，取消下面这行注释：
+# data/dictionary_core.json
+
+# ── 个人数据 / 临时导出 ────────────────────────────────────────────────────────
+temp_out/
+data/dictionary_core.legacy.json
+data/enrich-progress.json
+data/enrich-scan-report.json
+data/enrich-audit-report.json
+data/.enrich.lock
+.env
+.env.local
+
+# ── 系统文件 ──────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+*.log
+desktop.ini
+
+# ── Phase 5 脚本写入的备份 / 临时文件 ──────────────────────────────────────────
+data/*.bak-*
+data/*.tmp-*
+
+# ── AI 辅助开发产物（不进入公开仓库）────────────────────────────────────────
+# 各阶段报告、审计草稿、AI 编辑器规则与会话目录
+claude_report/
+.cursor/
+.claude/
+.codex/
+.continue/
+.cline/
+.windsurf/
+
+# ── 私有审计 / 本地备份 ────────────────────────────────────────────────
+*_private_audit/
+*.bundle
+*.bak
+*.backup
+*.tmp
+
+# ── 编辑器配置 ──────────────────────────────────────────────────────
+.vscode/
+.idea/
+
+# ── 密钥与本地环境（.env.example 是占位模板，保留）────────────────────────────
+.env.*
+!.env.example
+*.pem
+*.key
+
+# ── 仅本地使用的素材 ──────────────────────────────────────────────────
+icons/lucky.png
+
+# ── 私有发布包（scripts/package-release.js 输出，不得分发）──────────────────
+dist/

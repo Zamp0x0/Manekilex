@@ -1,0 +1,922 @@
+/* Manekilex - content script styles */
+
+.zeh-refresh-banner {
+  all: initial;
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: #1a1a1a;
+  color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  z-index: 2147483647;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 13px;
+  line-height: 1.4;
+  box-sizing: border-box;
+}
+
+.zeh-refresh-banner strong {
+  font-weight: 600;
+}
+
+.zeh-refresh-banner-btn {
+  all: initial;
+  padding: 4px 10px;
+  background: #fff0cf;
+  color: #4f2f16;
+  border: 1px solid rgba(122, 74, 36, 0.22);
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.zeh-lookup-toast {
+  all: initial;
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: min(92vw, 420px);
+  padding: 10px 16px;
+  background: rgba(26, 26, 26, 0.92);
+  color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  z-index: 2147483647;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 13px;
+  line-height: 1.45;
+  text-align: center;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+.zeh-trigger {
+  all: initial;
+  position: fixed;
+  /* 32px 透明热区，扩大可点击范围 */
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer !important;
+  z-index: 2147483646;
+  user-select: none;
+  -webkit-user-select: none;
+  box-sizing: border-box;
+  pointer-events: auto;
+}
+
+/* 复杂 Web App（ChatGPT / 飞书等）强制顶层可点 */
+.mk-lookup-bubble {
+  position: fixed !important;
+  z-index: 2147483647 !important;
+  pointer-events: auto !important;
+  user-select: none !important;
+  cursor: pointer !important;
+}
+
+.mk-lookup-bubble * {
+  pointer-events: auto !important;
+}
+
+/* 22px 可见小球，居中在热区内 */
+.zeh-trigger::before {
+  content: "";
+  display: block;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  cursor: pointer !important;
+  background: linear-gradient(135deg, var(--zeh-ball-start, #e4a72f), var(--zeh-ball-end, #d83424));
+  box-shadow: 0 2px 7px color-mix(in srgb, var(--zeh-accent, #d83424) 55%, transparent);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  flex-shrink: 0;
+}
+
+.zeh-trigger:hover::before {
+  transform: scale(1.15);
+}
+
+.zeh-panel {
+  all: initial;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  width: clamp(520px, 34vw, 640px);
+  max-width: min(640px, calc(100vw - 32px));
+  max-height: min(860px, calc(100vh - 24px));
+  background: #fffdf7;
+  border: none;
+  border-radius: 14px;
+  box-shadow: 0 10px 36px rgba(90, 53, 24, 0.18);
+  z-index: 2147483647;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter",
+    "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+  font-size: 16px;
+  color: #4f2f16;
+  overflow: visible;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.zeh-panel-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 12px 14px 16px;
+  background: linear-gradient(135deg, #e4a72f 0%, #d83424 100%);
+  color: #fff;
+  flex-shrink: 0;
+  overflow: visible;
+  border-radius: 14px 14px 0 0;
+}
+
+.zeh-panel-title {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  flex-shrink: 0;
+}
+
+.zeh-panel-header-right {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-shrink: 0;
+}
+
+.zeh-panel-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  z-index: 2;
+}
+
+.zeh-panel-header-cat {
+  position: absolute;
+  right: calc(100% - 132px);
+  top: -46px;
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  object-position: center bottom;
+  pointer-events: none;
+  z-index: 3;
+  transform: scaleX(-1) rotate(-26deg);
+  transform-origin: 72% 88%;
+}
+
+.zeh-panel-settings,
+.zeh-panel-close {
+  all: initial;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #fff;
+  line-height: 1;
+  opacity: 0.95;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.zeh-panel-settings:hover,
+.zeh-panel-close:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.24);
+}
+
+.zeh-panel-settings {
+  font-size: 20px;
+}
+
+.zeh-panel-close {
+  font-size: 26px;
+  font-weight: 400;
+}
+
+.zeh-panel-body {
+  padding: 0;
+  padding-right: 2px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  flex: 1 1 auto;
+  min-height: 0;
+  scrollbar-gutter: stable;
+}
+
+.zeh-panel-body::-webkit-scrollbar {
+  width: 5px;
+}
+
+.zeh-panel-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.zeh-panel-body::-webkit-scrollbar-thumb {
+  background: #ddd;
+  border-radius: 3px;
+}
+
+.zeh-panel-body::-webkit-scrollbar-thumb:hover {
+  background: #bbb;
+}
+
+.zeh-result {
+  padding: 18px 20px 16px;
+}
+
+.zeh-loading-wrap {
+  padding: 18px;
+}
+
+.zeh-term-header {
+  margin-bottom: 14px;
+}
+
+.zeh-term {
+  font-size: 22px;
+  font-weight: 800;
+  color: #4f2f16;
+  line-height: 1.35;
+  word-break: break-word;
+}
+
+.zeh-term-sentence {
+  font-size: 18px;
+  font-weight: 800;
+  color: #4f2f16;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.45;
+}
+
+.zeh-term-loading {
+  font-size: 17px;
+  margin-bottom: 14px;
+}
+
+.zeh-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.zeh-chip {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: #fff0cf;
+  color: #c98b1f;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.zeh-chip-pos {
+  background: #fff5df;
+  color: #d83424;
+}
+
+.zeh-section {
+  margin-bottom: 18px;
+}
+
+.zeh-section-highlight {
+  padding: 12px 16px;
+  background: #fffaf0;
+  border-radius: 12px;
+  border: 1px solid rgba(122, 74, 36, 0.16);
+  border-left: 4px solid #e4a72f;
+}
+
+.zeh-section-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: #8a6a45;
+  letter-spacing: 0.03em;
+  margin-bottom: 8px;
+}
+
+.zeh-meaning {
+  font-size: 18px;
+  font-weight: 700;
+  color: #4f2f16;
+  line-height: 1.65;
+}
+
+.zeh-context-text,
+.zeh-memory,
+.zeh-grammar {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.65;
+  color: #5c3d1e;
+}
+
+/* Phase 3：当前语境（此处含义 + 原句） */
+.zeh-context-section {
+  padding: 12px 16px;
+  background: #fffdf7;
+  border-radius: 12px;
+  border: 1px solid rgba(122, 74, 36, 0.14);
+  border-left: 4px solid var(--zeh-accent, #d83424);
+}
+
+.zeh-context-meaning {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.6;
+  color: #4f2f16;
+}
+
+.zeh-context-pos {
+  margin-right: 8px;
+  padding: 1px 8px;
+  font-size: 12px;
+  vertical-align: 2px;
+}
+
+.zeh-source-sentence {
+  margin-top: 8px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #6b4a28;
+  font-style: italic;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.zeh-source-term {
+  background: #fff0cf;
+  color: #4f2f16;
+  font-style: normal;
+  font-weight: 700;
+  padding: 0 2px;
+  border-radius: 3px;
+}
+
+.zeh-source-translation {
+  margin-top: 4px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #8a6a45;
+}
+
+.zeh-context-pending {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #8a6a45;
+}
+
+.zeh-spinner.zeh-spinner-sm {
+  width: 14px;
+  height: 14px;
+}
+
+.zeh-context-note {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #8a6a45;
+}
+
+.zeh-context-meta {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #8a6a45;
+  text-align: right;
+}
+
+.zeh-example {
+  padding: 12px 14px;
+  margin-bottom: 12px;
+  background: #fffaf0;
+  border: 1px solid rgba(122, 74, 36, 0.14);
+  border-radius: 12px;
+}
+
+.zeh-example-en {
+  font-size: 16px;
+  font-weight: 600;
+  color: #4f2f16;
+  line-height: 1.5;
+  margin-bottom: 6px;
+}
+
+.zeh-example-zh {
+  font-size: 15px;
+  font-weight: 500;
+  color: #6b4a28;
+  line-height: 1.5;
+}
+
+/* 0.11.1：派生词 / 同义词的紧凑行（decision · n. 决定；approve — 批准） */
+.zeh-lex-row {
+  font-size: 15px;
+  line-height: 1.55;
+  color: #5c3d1e;
+  padding: 2px 0;
+  overflow-wrap: anywhere;
+}
+
+.zeh-lex-word {
+  font-weight: 700;
+  color: #4f2f16;
+}
+
+.zeh-lex-pos {
+  color: #8a6a45;
+  font-style: italic;
+}
+
+.zeh-lex-nuance {
+  display: block;
+  font-size: 13px;
+  color: #8a6a45;
+}
+
+.zeh-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.zeh-tag {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 8px;
+  background: #fff0cf;
+  color: #5c3d1e;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.zeh-loading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #8a6a45;
+  font-size: 15px;
+}
+
+.zeh-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #f0e0c8;
+  border-top-color: #d83424;
+  border-radius: 50%;
+  animation: zeh-spin 0.7s linear infinite;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+@keyframes zeh-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.zeh-error {
+  font-size: 15px;
+  color: #c62828;
+  line-height: 1.55;
+  margin-top: 10px;
+}
+
+.zeh-fallback {
+  margin-top: 10px;
+  padding: 12px;
+  background: #fffaf0;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: #5c3d1e;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.zeh-duration {
+  font-size: 12px;
+  color: #8a6a45;
+  text-align: right;
+  margin-top: 6px;
+}
+
+.zeh-panel-footer {
+  display: flex;
+  gap: 8px;
+  padding: 14px 16px;
+  border-top: 1px solid rgba(122, 74, 36, 0.16);
+  background: #fffaf0;
+  flex-shrink: 0;
+  border-radius: 0 0 14px 14px;
+}
+
+.zeh-examples-section[hidden],
+.zeh-lexical-section[hidden],
+.zeh-panel-footer[hidden] {
+  display: none !important;
+}
+
+/* Content-script scoped mk-btn (reset host page styles) */
+.zeh-panel .mk-btn {
+  all: initial;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-height: 44px;
+  padding: 0 10px;
+  border: 1px solid rgba(122, 74, 36, 0.22);
+  border-radius: 10px;
+  background: #fffaf0;
+  color: #4f2f16;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  cursor: pointer;
+  box-sizing: border-box;
+  box-shadow: 0 2px 6px rgba(90, 53, 24, 0.1);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.zeh-panel .mk-btn:hover {
+  transform: translateY(-1px);
+  background: #fff5e6;
+}
+
+.zeh-panel .mk-btn:active {
+  transform: translateY(1px);
+}
+
+.zeh-panel .mk-btn-primary {
+  background: #fff0cf;
+}
+
+.zeh-panel .mk-btn-primary:hover {
+  background: #ffdf9c;
+}
+
+.zeh-panel .mk-btn-secondary {
+  background: #fffaf0;
+}
+
+.zeh-panel .mk-btn-settings-inline {
+  all: initial;
+  display: inline-block;
+  margin-top: 12px;
+  padding: 8px 14px;
+  border: 1px solid rgba(122, 74, 36, 0.22);
+  border-radius: 8px;
+  background: #fff0cf;
+  color: #4f2f16;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", sans-serif;
+  box-sizing: border-box;
+  box-shadow: 0 2px 6px rgba(90, 53, 24, 0.12);
+}
+
+.zeh-panel .mk-btn-settings-inline:hover {
+  background: #ffdf9c;
+}
+
+/* ── Manekilex 查词彩蛋 ─────────────────────────────────────────────────── */
+
+.zeh-panel.mk-manekilex-panel {
+  width: clamp(980px, 76vw, 1180px) !important;
+  max-width: min(1180px, calc(100vw - 12px)) !important;
+  height: min(880px, calc(100vh - 12px));
+  max-height: min(880px, calc(100vh - 12px));
+  min-height: 0;
+  overflow: visible;
+  box-sizing: border-box;
+  margin: 0;
+  transform-origin: center center;
+  animation: none;
+}
+
+.zeh-panel.mk-manekilex-panel .zeh-panel-header {
+  overflow: visible !important;
+  z-index: 2;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  position: relative;
+  min-height: 58px;
+}
+
+.zeh-panel.mk-manekilex-panel .zeh-panel-header-cat {
+  left: 68px;
+  right: auto;
+  top: -80px;
+  width: 400px;
+  height: auto;
+  max-height: none;
+  display: block;
+  flex-shrink: 0;
+  object-fit: contain;
+  object-position: center center;
+  z-index: 50;
+  pointer-events: none;
+  transform: scaleX(-1) rotate(-22deg);
+  transform-origin: 50% 88%;
+}
+
+.zeh-panel.mk-manekilex-panel .zeh-panel-body {
+  width: 100%;
+  height: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+  scrollbar-gutter: auto;
+  border-radius: 0 0 14px 14px;
+}
+
+.zeh-result.mk-manekilex-egg {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.mk-manekilex-egg {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 8px 20px 12px;
+  text-align: center;
+  box-sizing: border-box;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", "PingFang SC",
+    "Microsoft YaHei", Arial, sans-serif;
+}
+
+.mk-manekilex-egg:not(.mk-manekilex-ready) .mk-manekilex-danmaku {
+  visibility: hidden;
+}
+
+.zeh-panel.mk-manekilex-panel:not(.mk-manekilex-ready) .mk-easter-egg-layer {
+  visibility: hidden;
+}
+
+.mk-manekilex-danmaku {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  margin: 0;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+  box-sizing: border-box;
+}
+
+.mk-manekilex-danmaku-item {
+  position: absolute;
+  left: 100%;
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
+  transform: translateX(0);
+  rotate: 0deg;
+  font-family: inherit;
+  font-size: clamp(20px, 2.1vw, 32px);
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  opacity: 0.78;
+  color: #d89a28;
+  -webkit-text-fill-color: #e8b84a;
+  text-shadow: 0 1px 0 #fff8e1, 0 2px 8px rgba(216, 154, 40, 0.22);
+  animation-name: mk-danmaku-move;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  will-change: transform;
+}
+
+.mk-manekilex-danmaku-measure {
+  animation: none !important;
+  pointer-events: none !important;
+}
+
+.mk-manekilex-hero {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 100%;
+  flex: 1 1 auto;
+  min-height: 520px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.mk-manekilex-lucky {
+  display: block;
+  object-fit: contain;
+  object-position: center center;
+  pointer-events: none;
+  user-select: none;
+  position: relative;
+  z-index: 6;
+  flex-shrink: 0;
+  filter: drop-shadow(0 10px 22px rgba(228, 167, 47, 0.42));
+}
+
+.mk-manekilex-lucky-left {
+  width: 335px;
+  height: 335px;
+  flex: 0 0 335px;
+  margin-left: 8px;
+  margin-right: -28px;
+}
+
+.mk-manekilex-lucky-right {
+  width: 365px;
+  height: 365px;
+  flex: 0 0 365px;
+  margin-left: -28px;
+  margin-right: 8px;
+}
+
+.mk-manekilex-logo {
+  position: relative;
+  z-index: 8;
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", "PingFang SC",
+    "Microsoft YaHei", Arial, sans-serif;
+  font-size: clamp(72px, 8vw, 132px);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  min-width: min(360px, 100%);
+  text-align: center;
+  color: #5a3418;
+  text-shadow:
+    0 2px 0 rgba(255, 255, 255, 0.35),
+    0 0 28px rgba(255, 253, 247, 0.72);
+  pointer-events: none;
+  user-select: none;
+}
+
+.zeh-panel.mk-manekilex-panel .mk-easter-egg-layer {
+  z-index: 3;
+}
+
+.mk-easter-egg-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 8;
+  border-radius: 14px;
+}
+
+.mk-easter-egg-fall {
+  position: absolute;
+  top: -14%;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  line-height: 1;
+  will-change: top, opacity, transform;
+  animation: mk-egg-fall 3.4s linear forwards;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes mk-danmaku-move {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-1 * var(--mk-panel-w, 1000px) - 100%));
+    }
+  }
+
+  @keyframes mk-egg-fall {
+    0% {
+      top: -14%;
+      opacity: 0;
+      transform: translateX(0) rotate(0deg) scale(0.85);
+    }
+    5% {
+      opacity: 1;
+    }
+    92% {
+      opacity: 0.9;
+    }
+    100% {
+      top: 112%;
+      opacity: 0;
+      transform:
+        translateX(calc(-12px + 24px * var(--mk-drift, 0.5)))
+        rotate(540deg)
+        scale(1);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mk-manekilex-danmaku-item {
+    animation: none !important;
+    display: none !important;
+  }
+
+  .mk-easter-egg-fall,
+  .mk-easter-egg-layer {
+    display: none !important;
+  }
+}
+
+@media (max-width: 979px) {
+  .zeh-panel.mk-manekilex-panel {
+    width: calc(100vw - 12px) !important;
+    max-width: calc(100vw - 12px) !important;
+    height: min(820px, calc(100vh - 12px));
+    max-height: min(820px, calc(100vh - 12px));
+  }
+
+  .zeh-panel.mk-manekilex-panel .zeh-panel-header-cat {
+    left: 84px;
+    top: -58px;
+    width: 96px;
+    height: auto;
+  }
+
+  .mk-manekilex-hero {
+    min-height: 460px;
+    gap: 6px;
+  }
+
+  .mk-manekilex-lucky-left {
+    width: 280px;
+    height: 280px;
+    flex-basis: 280px;
+    margin-left: 0;
+    margin-right: -20px;
+  }
+
+  .mk-manekilex-lucky-right {
+    width: 300px;
+    height: 300px;
+    flex-basis: 300px;
+    margin-left: -20px;
+    margin-right: 0;
+  }
+
+  .mk-manekilex-logo {
+    min-width: min(280px, 100%);
+    font-size: clamp(56px, 12vw, 96px);
+  }
+
+  .mk-manekilex-danmaku-item {
+    font-size: clamp(18px, 3.6vw, 28px);
+  }
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>Manekilex 查词</title>
+  <link rel="stylesheet" href="mk-buttons.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      background: #fffdf7;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    .pdf-assistant-panel-wrap {
+      padding: 12px;
+      box-sizing: border-box;
+    }
+    .lookup-panel-hint {
+      font-size: 12px;
+      color: #8a6a45;
+      line-height: 1.5;
+      margin-bottom: 12px;
+      padding: 10px 12px;
+      background: #fff6e8;
+      border-radius: 8px;
+      border: 1px solid #f0e0c8;
+    }
+    .lookup-panel-empty {
+      text-align: center;
+      color: #999;
+      font-size: 13px;
+      padding: 32px 16px;
+      line-height: 1.6;
+    }
+    .pdf-assistant-panel-wrap .zeh-panel {
+      position: static !important;
+      width: 100% !important;
+      max-width: none !important;
+      max-height: none !important;
+      left: auto !important;
+      top: auto !important;
+      box-shadow: none;
+      border: 1px solid #eee;
+    }
+  </style>
+</head>
+<body class="mode-panel">
+  <div class="pdf-assistant-panel-wrap" id="pdfPanelWrap">
+    <div class="lookup-panel-hint" id="lookupPanelHint">
+      PDF 内置阅读器无法划词弹球。请<strong>选中英文 → 右键 → Manekilex 查词</strong>；选区即查所选文字（请尽量选完整单词）。也可导入书架阅读。
+    </div>
+    <div class="lookup-panel-empty" id="lookupPanelEmpty">
+      选中 PDF 中的英文，右键选择「Manekilex 查词」。
+    </div>
+    <div class="lookup-panel-root" id="lookupPanelRoot"></div>
+  </div>
+  <script src="config.js"></script>
+  <script src="lookup/dom-helpers.js"></script>
+  <script src="lookup/render.js"></script>
+  <script src="lookup/egg.js"></script>
+  <script src="lookup/tts.js"></script>
+  <script src="lookup/selection.js"></script>
+  <script src="lookup/context.js"></script>
+  <script src="lookup/runtime.js"></script>
+  <script src="mk-lookup.js"></script>
+  <script src="lookup-panel.js"></script>
+</body>
+</html>

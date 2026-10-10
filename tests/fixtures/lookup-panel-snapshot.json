@@ -1,0 +1,242 @@
+{
+  "loading-word": {
+    "title": "单词解释",
+    "queryType": "word",
+    "body": "\n        <div class=\"zeh-loading-wrap\">\n          <div class=\"zeh-term zeh-term-loading\">harbour</div>\n          <div class=\"zeh-loading\">\n            <div class=\"zeh-spinner\"></div>\n            <span>正在单词解释…</span>\n          </div>\n        </div>\n      ",
+    "updates": "\n        <div class=\"zeh-panel-header\">\n          <span class=\"zeh-panel-title\">Manekilex</span>\n          <img class=\"zeh-panel-header-cat\" src=\"chrome-extension://test-extension/icons/css_5.png\" alt=\"\" />\n          <div class=\"zeh-panel-header-right\">\n            <div class=\"zeh-panel-actions\">\n              <button type=\"button\" class=\"zeh-panel-settings\" title=\"设置\">&#9881;</button>\n              <button type=\"button\" class=\"zeh-panel-close\" title=\"关闭\">×</button>\n            </div>\n          </div>\n        </div>\n        <div class=\"zeh-panel-body\"></div>\n        <div class=\"zeh-panel-footer\" hidden></div>\n      \n\n\n单词解释\n<body>\n",
+    "explain": {
+      "type": "EXPLAIN",
+      "text": "harbour",
+      "queryType": "word"
+    }
+  },
+  "loading-sentence": {
+    "title": "短语解释",
+    "queryType": "phrase",
+    "body": "\n        <div class=\"zeh-loading-wrap\">\n          <div class=\"zeh-term zeh-term-loading\">The committee postponed the vote</div>\n          <div class=\"zeh-loading\">\n            <div class=\"zeh-spinner\"></div>\n            <span>正在短语解释…</span>\n          </div>\n        </div>\n      ",
+    "updates": "\n        <div class=\"zeh-panel-header\">\n          <span class=\"zeh-panel-title\">Manekilex</span>\n          <img class=\"zeh-panel-header-cat\" src=\"chrome-extension://test-extension/icons/css_5.png\" alt=\"\" />\n          <div class=\"zeh-panel-header-right\">\n            <div class=\"zeh-panel-actions\">\n              <button type=\"button\" class=\"zeh-panel-settings\" title=\"设置\">&#9881;</button>\n              <button type=\"button\" class=\"zeh-panel-close\" title=\"关闭\">×</button>\n            </div>\n          </div>\n        </div>\n        <div class=\"zeh-panel-body\"></div>\n        <div class=\"zeh-panel-footer\" hidden></div>\n      \n\n\n短语解释\n<body>\n",
+    "explain": {
+      "type": "EXPLAIN",
+      "text": "The committee postponed the vote",
+      "queryType": "phrase"
+    }
+  },
+  "loading-paragraph": {
+    "title": "句子解释",
+    "queryType": "sentence",
+    "body": "\n        <div class=\"zeh-loading-wrap\">\n          <div class=\"zeh-term zeh-term-sentence zeh-term-loading\">The committee postponed the vote until the next quarterly meeting. Everyone agreed with that plan and went home</div>\n          <div class=\"zeh-loading\">\n            <div class=\"zeh-spinner\"></div>\n            <span>正在句子解释…</span>\n          </div>\n        </div>\n      ",
+    "updates": "\n        <div class=\"zeh-panel-header\">\n          <span class=\"zeh-panel-title\">Manekilex</span>\n          <img class=\"zeh-panel-header-cat\" src=\"chrome-extension://test-extension/icons/css_5.png\" alt=\"\" />\n          <div class=\"zeh-panel-header-right\">\n            <div class=\"zeh-panel-actions\">\n              <button type=\"button\" class=\"zeh-panel-settings\" title=\"设置\">&#9881;</button>\n              <button type=\"button\" class=\"zeh-panel-close\" title=\"关闭\">×</button>\n            </div>\n          </div>\n        </div>\n        <div class=\"zeh-panel-body\"></div>\n        <div class=\"zeh-panel-footer\" hidden></div>\n      \n\n\n句子解释\n<body>\n",
+    "explain": {
+      "type": "EXPLAIN",
+      "text": "The committee postponed the vote until the next quarterly meeting. Everyone agreed with that plan and went home",
+      "queryType": "sentence"
+    }
+  },
+  "word-dictionary": {
+    "title": "单词解释",
+    "queryType": "word",
+    "body": "\n        <div class=\"zeh-result\">\n          <div class=\"zeh-term-header\">\n            <div class=\"zeh-term\">harbour</div>\n            <div class=\"zeh-meta\"><span class=\"zeh-chip\">/ˈhɑːbə/</span><span class=\"zeh-chip zeh-chip-pos\">n.</span></div>\n          </div>\n          <div class=\"zeh-section zeh-section-highlight\">\n            <div class=\"zeh-section-title\">基础释义</div>\n            <div class=\"zeh-meaning\">港口；避风港</div>\n          </div>\n          \n          \n          \n          <div class=\"zeh-section zeh-lexical-section zeh-derivatives-section\" hidden></div>\n          <div class=\"zeh-section zeh-lexical-section zeh-synonyms-section\" hidden></div>\n          <div class=\"zeh-section zeh-examples-section\">\n          <div class=\"zeh-section-title\">例句</div>\n          \n          <div class=\"zeh-example\">\n            <div class=\"zeh-example-en\">The ship left the harbour at dawn.</div>\n            <div class=\"zeh-example-zh\">船在黎明时离港。</div>\n          </div>\n        \n          <div class=\"zeh-example\">\n            <div class=\"zeh-example-en\">They harbour no doubts.</div>\n            <div class=\"zeh-example-zh\">他们毫无疑虑。</div>\n          </div>\n        \n      </div>\n          <div class=\"zeh-section zeh-lexical-section zeh-memory-section\"><div class=\"zeh-section-title\">助记</div><div class=\"zeh-memory\">harbo(u)r：藏船的地方</div></div>\n          \n          \n          <div class=\"zeh-duration\">📖 词典</div>\n        </div>\n      ",
+    "updates": "\n        <div class=\"zeh-panel-header\">\n          <span class=\"zeh-panel-title\">Manekilex</span>\n          <img class=\"zeh-panel-header-cat\" src=\"chrome-extension://test-extension/icons/css_5.png\" alt=\"\" />\n          <div class=\"zeh-panel-header-right\">\n            <div class=\"zeh-panel-actions\">\n              <button type=\"button\" class=\"zeh-panel-settings\" title=\"设置\">&#9881;</button>\n              <button type=\"button\" class=\"zeh-panel-close\" title=\"关闭\">×</button>\n            </div>\n          </div>\n        </div>\n        <div class=\"zeh-panel-body\"></div>\n        <div class=\"zeh-panel-footer\" hidden></div>\n      \n\n\n单词解释\n<body>\n\n          <button type=\"button\" class=\"mk-btn mk-btn-secondary mk-btn-sm\">发音</button>\n          <button type=\"button\" class=\"mk-btn mk-btn-secondary mk-btn-sm\">加入生词本</button>\n          <button type=\"button\" class=\"mk-btn mk-btn-primary mk-btn-sm\">复制</button>\n        \n\n已复制 ✓\n",
+    "addVocab": {
+      "term": "harbour",
+      "queryType": "word",
+      "pageUrl": "https://example.test/article",
+      "pageTitle": "Harbour News",
+      "phonetic": "/ˈhɑːbə/",
+      "part_of_speech": "n.",
+      "short_meaning": "港口；避风港",
+      "context_meaning": "",
+      "examples": [
+        {
+          "en": "The ship left the harbour at dawn.",
+          "zh": "船在黎明时离港。"
+        },
+        {
+          "en": "They harbour no doubts.",
+          "zh": "他们毫无疑虑。"
+        }
+      ],
+      "memory_tip": "harbo(u)r：藏船的地方",
+      "derivatives": [
+        {
+          "word": "harbourage",
+          "pos": "n.",
+          "meaning": "避难所"
+        }
+      ]
+    },
+    "copied": "【harbour】\n\n音标: /ˈhɑːbə/\n词性: n.\n基础释义: 港口；避风港\n\n例句1: The ship left the harbour at dawn.\n翻译: 船在黎明时离港。\n\n例句2: They harbour no doubts.\n翻译: 他们毫无疑虑。\n\n派生词: harbourage n. undefined\n助记: harbo(u)r：藏船的地方"
+  },
+  "word-model": {
+    "title": "单词解释",
+    "queryType": "word",
+    "body": "\n        <div class=\"zeh-result\">\n          <div class=\"zeh-term-header\">\n            <div class=\"zeh-term\">harbour</div>\n            <div class=\"zeh-meta\"><span class=\"zeh-chip\">/ˈhɑːbə/</span><span class=\"zeh-chip zeh-chip-pos\">n.</span></div>\n          </div>\n          <div class=\"zeh-section zeh-section-highlight\">\n            <div class=\"zeh-section-title\">基础释义</div>\n            <div class=\"zeh-meaning\">港口；避风港</div>\n          </div>\n          \n          \n          \n          <div class=\"zeh-section zeh-lexical-section zeh-derivatives-section\" hidden></div>\n          <div class=\"zeh-section zeh-lexical-section zeh-synonyms-section\" hidden></div>\n          <div class=\"zeh-section zeh-examples-section\">\n          <div class=\"zeh-section-title\">例句</div>\n          \n          <div class=\"zeh-example\">\n            <div class=\"zeh-example-en\">The ship left the harbour at dawn.</div>\n            <div class=\"zeh-example-zh\">船在黎明时离港。</div>\n          </div>\n        \n          <div class=\"zeh-example\">\n            <div class=\"zeh-example-en\">They harbour no doubts.</div>\n            <div class=\"zeh-example-zh\">他们毫无疑虑。</div>\n          </div>\n        \n      </div>\n          <div class=\"zeh-section zeh-lexical-section zeh-memory-section\"><div class=\"zeh-section-title\">助记</div><div class=\"zeh-memory\">harbo(u)r：藏船的地方</div></div>\n          \n          \n          <div class=\"zeh-duration\">DeepSeek · deepseek-flash · 2.3s</div>\n        </div>\n      ",
+    "updates": "\n        <div class=\"zeh-panel-header\">\n          <span class=\"zeh-panel-title\">Manekilex</span>\n          <img class=\"zeh-panel-header-cat\" src=\"chrome-extension://test-extension/icons/css_5.png\" alt=\"\" />\n          <div class=\"zeh-panel-header-right\">\n            <div class=\"zeh-panel-actions\">\n              <button type=\"button\" class=\"zeh-panel-settings\" title=\"设置\">&#9881;</button>\n              <button type=\"button\" class=\"zeh-panel-close\" title=\"关闭\">×</button>\n            </div>\n          </div>\n        </div>\n        <div class=\"zeh-panel-body\"></div>\n        <div class=\"zeh-panel-footer\" hidden></div>\n      \n\n\n单词解释\n<body>\n\n          <button type=\"button\" class=\"mk-btn mk-btn-secondary mk-btn-sm\">发音</button>\n          <button type=\"button\" class=\"mk-btn mk-btn-secondary mk-btn-sm\">加入生词本</button>\n          <button type=\"button\" class=\"mk-btn mk-btn-primary mk-btn-sm\">复制</button>\n        \n\n\n"
+  },
+  "word-cache": {
+    "title": "单词解释",
+    "queryType": "word",
+    "body": "\n        <div class=\"zeh-result\">\n          <div class=\"zeh-term-header\">\n            <div class=\"zeh-term\">harbour</div>\n            <div class=\"zeh-meta\"><span class=\"zeh-chip\">/ˈhɑːbə/</span><span class=\"zeh-chip zeh-chip-pos\">n.</span></div>\n          </div>\n          <div class=\"zeh-section zeh-section-highlight\">\n            <div class=\"zeh-section-title\">基础释义</div>\n            <div class=\"zeh-meaning\">港口；避风港</div>\n          </div>\n          \n          \n          \n          <div class=\"zeh-section zeh-lexical-section zeh-derivatives-section\" hidden></div>\n          <div class=\"zeh-section zeh-lexical-section zeh-synonyms-section\" hidden></div>\n          <div class=\"zeh-section zeh-examples-section\">\n          <div class=\"zeh-section-title\">例句</div>\n          \n          <div class=\"zeh-example\">\n            <div class=\"zeh-example-en\">The ship left the harbour at dawn.</div>\n            <div class=\"zeh-example-zh\">船在黎明时离港。</div>\n          </div>\n        \n          <div class=\"zeh-example\">\n            <div class=\"zeh-example-en\">They harbour no doubts.</div>\n            <div class=\"zeh-example-zh\">他们毫无疑虑。</div>\n          </div>\n        \n      </div>\n          <div class=\"zeh-section zeh-lexical-section zeh-memory-section\"><div class=\"zeh-section-title\">助记</div><div class=\"zeh-memory\">harbo(u)r：藏船的地方</div></div>\n          \n          \n          <div class=\"zeh-duration\">⚡ 缓存</div>\n        </div>\n      ",
+    "updates": "\n        <div class=\"zeh-panel-header\">\n          <span class=\"zeh-panel-title\">Manekilex</span>\n          <img class=\"zeh-panel-header-cat\" src=\"chrome-extension://test-extension/icons/css_5.png\" alt=\"\" />\n          <div class=\"zeh-panel-header-right\">\n            <div class=\"zeh-panel-actions\">\n              <button type=\"button\" class=\"zeh-panel-settings\" title=\"设置\">&#9881;</button>\n              <button type=\"button\" class=\"zeh-panel-close\" title=\"关闭\">×</button>\n            </div>\n          </div>\n        </div>\n        <div class=\"zeh-panel-body\"></div>\n        <div class=\"zeh-panel-footer\" hidden></div>\n      \n\n\n单词解释\n<body>\n\n          <button type=\"button\" class=\"mk-btn mk-btn-secondary mk-btn-sm\">发音</button>\n          <button type=\"button\" class=\"mk-btn mk-btn-secondary mk-btn-sm\">加入生词本</button>\n          <button type=\"button\" class=\"mk-btn mk-btn-primary mk-btn-sm\">复制</button>\n        \n\n\n"
+  },
+  "word-dict-enhanced": {
+    "title": "单词解释",
+    "queryType": "word",
+    "body": "\n        <div class=\"zeh-result\">\n          <div class=\"zeh-term-header\">\n            <div class=\"zeh-term\">harbour</div>\n            <div class=\"zeh-meta\"><span class=\"zeh-chip\">/ˈhɑːbə/</span><span class=\"zeh-chip zeh-chip-pos\">n.</span></div>\n          </div>\n          <div class=\"zeh-section zeh-section-highlight\">\n            <div class=\"zeh-section-title\">基础释义</div>\n            <div class=\"zeh-meaning\">港口；避风港</div>\n          </div>\n          \n          \n          \n          <div class=\"zeh-section zeh-lexical-section zeh-derivatives-section\" hidden></div>\n          <div class=\"zeh-section zeh-lexical-section zeh-synonyms-section\" hidden></div>\n          <div class=\"zeh-section zeh-examples-section\">\n          <div class=\"zeh-section-title\">例句</div>\n          \n          <div class=\"zeh-example\">\n            <div class=\"zeh-example-en\">The ship left the harbour at dawn.</div>\n            <div class=\"zeh-example-zh\">船在黎明时离港。</div>\n          </div>\n        \n          <div class=\"zeh-example\">\n            <div class=\"zeh-example-en\">They harbour no doubts.</div>\n            <div class=\"zeh-example-zh\">他们毫无疑虑。</div>\n          </div>\n        \n      </div>\n          <div class=\"zeh-section zeh-lexical-section zeh-memory-section\"><div class=\"zeh-section-title\">助记</div><div class=\"zeh-memory\">harbo(u)r：藏船的地方</div></div>\n          \n          \n          <div class=\"zeh-duration\">⚡ 缓存</div>\n        </div>\n      ",
+    "updates": "\n        <div class=\"zeh-panel-header\">\n          <span class=\"zeh-panel-title\">Manekilex</span>\n          <img class=\"zeh-panel-header-cat\" src=\"chrome-extension://test-extension/icons/css_5.png\" alt=\"\" />\n          <div class=\"zeh-panel-header-right\">\n            <div class=\"zeh-panel-actions\">\n              <button type=\"button\" class=\"zeh-panel-settings\" title=\"设置\">&#9881;</button>\n              <button type=\"button\" class=\"zeh-panel-close\" title=\"关闭\">×</button>\n            </div>\n          </div>\n        </div>\n        <div class=\"zeh-panel-body\"></div>\n        <div class=\"zeh-panel-footer\" hidden></div>\n      \n\n\n单词解释\n<body>\n\n          <button type=\"button\" class=\"mk-btn mk-btn-secondary mk-btn-sm\">发音</button>\n          <button type=\"button\" class=\"mk-btn mk-btn-secondary mk-btn-sm\">加入生词本</button>\n          <button type=\"button\" class=\"mk-btn mk-btn-primary mk-btn-sm\">复制</button>\n        \n\n\n\nDeepSeek · deepseek-flash · 1.5s · AI增强已缓存"
+  },
+  "context-explain": {
+    "title": "单词解释",
+    "queryType": "word",
+    "body": "\n        <div class=\"zeh-loading-wrap\">\n          <div class=\"zeh-term zeh-term-loading\">harbour</div>\n          <div class=\"zeh-loading\">\n            <div class=\"zeh-spinner\"></div>\n            <span>正在单词解释…</span>\n          </div>\n        </div>\n      ",
+    "updates": "\n        <div class=\"zeh-panel-header\">\n          <span class=\"zeh-panel-title\">Manekilex</span>\n          <img class=\"zeh-panel-header-cat\" src=\"chrome-extension://test-extension/icons/css_5.png\" alt=\"\" />\n          <div class=\"zeh-panel-header-right\">\n            <div class=\"zeh-panel-actions\">\n              <button type=\"button\" class=\"zeh-panel-settings\" title=\"设置\">&#9881;</button>\n              <button type=\"button\" class=\"zeh-panel-close\" title=\"关闭\">×</button>\n            </div>\n          </div>\n        </div>\n        <div class=\"zeh-panel-body\"></div>\n        <div class=\"zeh-panel-footer\" hidden></div>\n      \n\n\n单词解释\n<body>\n",
+    "explain": {
+      "type": "EXPLAIN",
+      "text": "harbour",
+      "queryType": "word",
+      "context": {
+        "sentence": "The ship left the harbour at dawn.",
+        "sourceType": "web",
+        "nearbyText": "Fog rolled in. The ship left the harbour at dawn. Gulls followed."
+      }
+    }
+  },
+  "context-pending": {
+    "title": "单词解释",
+    "queryType": "word",
+    "body": "\n        <div class=\"zeh-result\">\n          <div class=\"zeh-term-header\">\n            <div class=\"zeh-term\">harbour</div>\n            <div class=\"zeh-meta\"><span class=\"zeh-chip\">/ˈhɑːbə/</span><span class=\"zeh-chip zeh-chip-pos\">n.</span></div>\n          </div>\n          <div class=\"zeh-section zeh-section-highlight\">\n            <div class=\"zeh-section-title\">基础释义</div>\n            <div class=\"zeh-meaning\">港口；避风港</div>\n          </div>\n          <div class=\"zeh-section zeh-context-section\" data-context-state=\"pending\"><div class=\"zeh-section-title\">当前语境</div><div class=\"zeh-context-pending\"><div class=\"zeh-spinner zeh-spinner-sm\"></div><span>正在分析当前语境…</span></div><div class=\"zeh-source-sentence\">The ship left the <mark class=\"zeh-source-term\">harbour</mark> at dawn.</div></div>\n          \n          \n          <div class=\"zeh-section zeh-lexical-section zeh-derivatives-section\" hidden></div>\n          <div class=\"zeh-section zeh-lexical-section zeh-synonyms-section\" hidden></div>\n          <div class=\"zeh-section zeh-examples-section\">\n          <div class=\"zeh-section-title\">例句</div>\n          \n          <div class=\"zeh-example\">\n            <div class=\"zeh-example-en\">The ship left the harbour at dawn.</div>\n            <div class=\"zeh-example-zh\">船在黎明时离港。</div>\n          </div>\n        \n          <div class=\"zeh-example\">\n            <div class=\"zeh-example-en\">They harbour no doubts.</div>\n            <div class=\"zeh-example-zh\">他们毫无疑虑。</div>\n          </div>\n        \n      </div>\n          <div class=\"zeh-section zeh-lexical-section zeh-memory-section\"><div class=\"zeh-section-title\">助记</div><div class=\"zeh-memory\">harbo(u)r：藏船的地方</div></div>\n          \n          \n          <div class=\"zeh-duration\">📖 词典</div>\n        </div>\n      ",
+    "updates": "\n        <div class=\"zeh-panel-header\">\n          <span class=\"zeh-panel-title\">Manekilex</span>\n          <img class=\"zeh-panel-header-cat\" src=\"chrome-extension://test-extension/icons/css_5.png\" alt=\"\" />\n          <div class=\"zeh-panel-header-right\">\n            <div class=\"zeh-panel-actions\">\n              <button type=\"button\" class=\"zeh-panel-settings\" title=\"设置\">&#9881;</button>\n              <button type=\"button\" class=\"zeh-panel-close\" title=\"关闭\">×</button>\n            </div>\n          </div>\n        </div>\n        <div class=\"zeh-panel-body\"></div>\n        <div class=\"zeh-panel-footer\" hidden></div>\n      \n\n\n单词解释\n<body>\n\n          <button type=\"button\" class=\"mk-btn mk-btn-secondary mk-btn-sm\">发音</button>\n          <button type=\"button\" class=\"mk-btn mk-btn-secondary mk-btn-sm\">加入生词本</button>\n          <button type=\"button\" class=\"mk-btn mk-btn-primary mk-btn-sm\">复制</button>\n        \n\n\n"
+  },
+  "context-enhanced": {
+    "title": "单词解释",
+    "queryType": "word",
+    "body": "\n        <div class=\"zeh-result\">\n          <div class=\"zeh-term-header\">\n            <div class=\"zeh-term\">harbour</div>\n            <div class=\"zeh-meta\"><span class=\"zeh-chip\">/ˈhɑːbə/</span><span class=\"zeh-chip zeh-chip-pos\">n.</span></div>\n          </div>\n          <div class=\"zeh-section zeh-section-highlight\">\n            <div class=\"zeh-section-title\">基础释义</div>\n            <div class=\"zeh-meaning\">港口；避风港</div>\n          </div>\n          <div class=\"zeh-section zeh-context-section\" data-context-state=\"pending\"><div class=\"zeh-section-title\">当前语境</div><div class=\"zeh-context-pending\"><div class=\"zeh-spinner zeh-spinner-sm\"></div><span>正在分析当前语境…</span></div><div class=\"zeh-source-sentence\">The ship left the <mark class=\"zeh-source-term\">harbour</mark> at dawn.</div></div>\n          \n          \n          <div class=\"zeh-section zeh-lexical-section zeh-derivatives-section\" hidden></div>\n          <div class=\"zeh-section zeh-lexical-section zeh-synonyms-section\" hidden></div>\n          <div class=\"zeh-section zeh-examples-section\">\n          <div class=\"zeh-section-title\">例句</div>\n          \n          <div class=\"zeh-example\">\n            <div class=\"zeh-example-en\">The ship left the harbour at dawn.</div>\n            <div class=\"zeh-example-zh\">船在黎明时离港。</div>\n          </div>\n        \n          <div class=\"zeh-example\">\n            <div class=\"zeh-example-en\">They harbour no doubts.</div>\n            <div class=\"zeh-example-zh\">他们毫无疑虑。</div>\n          </div>\n        \n      </div>\n          <div class=\"zeh-section zeh-lexical-section zeh-memory-section\"><div class=\"zeh-section-title\">助记</div><div class=\"zeh-memory\">harbo(u)r：藏船的地方</div></div>\n          \n          \n          <div class=\"zeh-duration\">📖 词典</div>\n        </div>\n      ",
+    "updates": "\n        <div class=\"zeh-panel-header\">\n          <span class=\"zeh-panel-title\">Manekilex</span>\n          <img class=\"zeh-panel-header-cat\" src=\"chrome-extension://test-extension/icons/css_5.png\" alt=\"\" />\n          <div class=\"zeh-panel-header-right\">\n            <div class=\"zeh-panel-actions\">\n              <button type=\"button\" class=\"zeh-panel-settings\" title=\"设置\">&#9881;</button>\n              <button type=\"button\" class=\"zeh-panel-close\" title=\"关闭\">×</button>\n            </div>\n          </div>\n        </div>\n        <div class=\"zeh-panel-body\"></div>\n        <div class=\"zeh-panel-footer\" hidden></div>\n      \n\n\n单词解释\n<body>\n\n          <button type=\"button\" class=\"mk-btn mk-btn-secondary mk-btn-sm\">发音</button>\n          <button type=\"button\" class=\"mk-btn mk-btn-secondary mk-btn-sm\">加入生词本</button>\n          <button type=\"button\" class=\"mk-btn mk-btn-primary mk-btn-sm\">复制</button>\n        \n\n已复制 ✓\n\n<div class=\"zeh-section-title\">当前语境</div><div class=\"zeh-context-meaning\"><span class=\"zeh-chip zeh-chip-pos zeh-context-pos\">名词</span>此处指港口</div><div class=\"zeh-source-sentence\">The ship left the <mark class=\"zeh-source-term\">harbour</mark> at dawn.</div><div class=\"zeh-source-translation\">船在黎明时离开了港口。</div><div class=\"zeh-context-meta\">DeepSeek · deepseek-chat · 1.2s</div>\n\n          <div class=\"zeh-section-title\">例句</div>\n          \n          <div class=\"zeh-example\">\n            <div class=\"zeh-example-en\">A busy harbour.</div>\n            <div class=\"zeh-example-zh\">繁忙的港口。</div>\n          </div>\n        \n      \n\n\n<div class=\"zeh-section-title\">助记</div><div class=\"zeh-memory\">harbo(u)r：藏船的地方</div>",
+    "addVocab": {
+      "term": "harbour",
+      "queryType": "word",
+      "pageUrl": "https://example.test/article",
+      "pageTitle": "Harbour News",
+      "phonetic": "/ˈhɑːbə/",
+      "part_of_speech": "n.",
+      "short_meaning": "港口；避风港",
+      "context_meaning": "",
+      "examples": [
+        {
+          "en": "A busy harbour.",
+          "zh": "繁忙的港口。"
+        }
+      ],
+      "memory_tip": "harbo(u)r：藏船的地方",
+      "context_sentence": "The ship left the harbour at dawn.",
+      "sourceType": "web",
+      "meaning_here": "此处指港口",
+      "pos_here": "名词",
+      "sentence_translation": "船在黎明时离开了港口。"
+    },
+    "copied": "【harbour】\n\n音标: /ˈhɑːbə/\n词性: n.\n基础释义: 港口；避风港\n当前语境: 此处指港口\n原句: The ship left the harbour at dawn.\n原句翻译: 船在黎明时离开了港口。\n\n例句1: A busy harbour.\n翻译: 繁忙的港口。\n\n助记: harbo(u)r：藏船的地方"
+  },
+  "sentence": {
+    "title": "句子解释",
+    "queryType": "sentence",
+    "body": "\n        <div class=\"zeh-result\">\n          <div class=\"zeh-term-header\">\n            <div class=\"zeh-term zeh-term-sentence\">The committee postponed the vote.</div>\n            \n          </div>\n          <div class=\"zeh-section zeh-section-highlight\">\n                  <div class=\"zeh-section-title\">翻译</div>\n                  <div class=\"zeh-meaning\">委员会推迟了投票。</div>\n                </div>\n          \n          \n          \n        <div class=\"zeh-section\">\n          <div class=\"zeh-section-title\">重点词组</div>\n          <div class=\"zeh-tags\"><span class=\"zeh-tag\">postpone the vote</span></div>\n        </div>\n      \n          <div class=\"zeh-duration\">0.9s</div>\n        </div>\n      ",
+    "updates": "\n        <div class=\"zeh-panel-header\">\n          <span class=\"zeh-panel-title\">Manekilex</span>\n          <img class=\"zeh-panel-header-cat\" src=\"chrome-extension://test-extension/icons/css_5.png\" alt=\"\" />\n          <div class=\"zeh-panel-header-right\">\n            <div class=\"zeh-panel-actions\">\n              <button type=\"button\" class=\"zeh-panel-settings\" title=\"设置\">&#9881;</button>\n              <button type=\"button\" class=\"zeh-panel-close\" title=\"关闭\">×</button>\n            </div>\n          </div>\n        </div>\n        <div class=\"zeh-panel-body\"></div>\n        <div class=\"zeh-panel-footer\" hidden></div>\n      \n\n\n句子解释\n<body>\n\n          <button type=\"button\" class=\"mk-btn mk-btn-secondary mk-btn-sm\">发音</button>\n          <button type=\"button\" class=\"mk-btn mk-btn-secondary mk-btn-sm\">加入生词本</button>\n          <button type=\"button\" class=\"mk-btn mk-btn-primary mk-btn-sm\">复制</button>\n        \n\n已复制 ✓\n",
+    "addVocab": {
+      "term": "The committee postponed the vote.",
+      "queryType": "sentence",
+      "pageUrl": "https://example.test/article",
+      "pageTitle": "Harbour News",
+      "translation": "委员会推迟了投票。",
+      "grammar_notes": "",
+      "key_phrases": [
+        "postpone the vote"
+      ],
+      "tone": "",
+      "nuance": "",
+      "short_meaning": "委员会推迟了投票。"
+    },
+    "copied": "【The committee postponed the vote.】\n\n翻译: 委员会推迟了投票。\n重点: postpone the vote"
+  },
+  "paragraph": {
+    "title": "段落解释",
+    "queryType": "paragraph",
+    "body": "\n        <div class=\"zeh-result\">\n          <div class=\"zeh-term-header\">\n            <div class=\"zeh-term zeh-term-sentence\">The committee postponed the vote until the next quarterly meeting. Everyone agreed with that plan and went home</div>\n            \n          </div>\n          <div class=\"zeh-section\">\n                  <div class=\"zeh-section-title\">概要</div>\n                  <div class=\"zeh-context-text\">投票推迟。</div>\n                </div>\n          <div class=\"zeh-section zeh-section-highlight\">\n                  <div class=\"zeh-section-title\">翻译</div>\n                  <div class=\"zeh-meaning\">委员会把投票推迟到下次季度会议。大家都同意。</div>\n                </div>\n          \n        <div class=\"zeh-section\">\n          <div class=\"zeh-section-title\">难懂短语</div>\n          \n          <div class=\"zeh-example\">\n            <div class=\"zeh-example-en\">quarterly meeting</div>\n            <div class=\"zeh-example-zh\">季度会议</div>\n            \n          </div>\n        </div>\n      \n          \n          \n          <div class=\"zeh-duration\">1.9s</div>\n        </div>\n      ",
+    "updates": "\n        <div class=\"zeh-panel-header\">\n          <span class=\"zeh-panel-title\">Manekilex</span>\n          <img class=\"zeh-panel-header-cat\" src=\"chrome-extension://test-extension/icons/css_5.png\" alt=\"\" />\n          <div class=\"zeh-panel-header-right\">\n            <div class=\"zeh-panel-actions\">\n              <button type=\"button\" class=\"zeh-panel-settings\" title=\"设置\">&#9881;</button>\n              <button type=\"button\" class=\"zeh-panel-close\" title=\"关闭\">×</button>\n            </div>\n          </div>\n        </div>\n        <div class=\"zeh-panel-body\"></div>\n        <div class=\"zeh-panel-footer\" hidden></div>\n      \n\n\n段落解释\n<body>\n\n          <button type=\"button\" class=\"mk-btn mk-btn-secondary mk-btn-sm\">发音</button>\n          <button type=\"button\" class=\"mk-btn mk-btn-secondary mk-btn-sm\">加入生词本</button>\n          <button type=\"button\" class=\"mk-btn mk-btn-primary mk-btn-sm\">复制</button>\n        \n\n已复制 ✓\n",
+    "addVocab": {
+      "term": "The committee postponed the vote until the next quarterly meeting. Everyone agreed with that plan and went home",
+      "queryType": "paragraph",
+      "pageUrl": "https://example.test/article",
+      "pageTitle": "Harbour News",
+      "translation": "委员会把投票推迟到下次季度会议。大家都同意。",
+      "grammar_notes": "",
+      "key_phrases": [
+        "quarterly meeting"
+      ],
+      "tone": "",
+      "nuance": "投票推迟。",
+      "short_meaning": "投票推迟。"
+    },
+    "copied": "【The committee postponed the vote until the next quarterly meeting. Everyone agreed with that plan and went home】\n\n概要: 投票推迟。\n翻译: 委员会把投票推迟到下次季度会议。大家都同意。\n难懂短语:\n- quarterly meeting: 季度会议"
+  },
+  "code-term": {
+    "title": "单词解释",
+    "queryType": "word",
+    "body": "\n        <div class=\"zeh-result\">\n          <div class=\"zeh-term-header\">\n            <div class=\"zeh-term\">useEffect</div>\n            \n          </div>\n          <div class=\"zeh-section zeh-section-highlight\">\n            <div class=\"zeh-section-title\">基础释义</div>\n            <div class=\"zeh-meaning\">React 副作用 Hook</div>\n          </div>\n          \n          \n          \n          <div class=\"zeh-section zeh-lexical-section zeh-derivatives-section\" hidden></div>\n          <div class=\"zeh-section zeh-lexical-section zeh-synonyms-section\" hidden></div>\n          <div class=\"zeh-section zeh-examples-section\" hidden></div>\n          <div class=\"zeh-section zeh-lexical-section zeh-memory-section\" hidden></div>\n          \n          \n          <div class=\"zeh-duration\">0.7s</div>\n        </div>\n      ",
+    "updates": "\n        <div class=\"zeh-panel-header\">\n          <span class=\"zeh-panel-title\">Manekilex</span>\n          <img class=\"zeh-panel-header-cat\" src=\"chrome-extension://test-extension/icons/css_5.png\" alt=\"\" />\n          <div class=\"zeh-panel-header-right\">\n            <div class=\"zeh-panel-actions\">\n              <button type=\"button\" class=\"zeh-panel-settings\" title=\"设置\">&#9881;</button>\n              <button type=\"button\" class=\"zeh-panel-close\" title=\"关闭\">×</button>\n            </div>\n          </div>\n        </div>\n        <div class=\"zeh-panel-body\"></div>\n        <div class=\"zeh-panel-footer\" hidden></div>\n      \n\n\n单词解释\n<body>\n\n          <button type=\"button\" class=\"mk-btn mk-btn-secondary mk-btn-sm\">发音</button>\n          <button type=\"button\" class=\"mk-btn mk-btn-secondary mk-btn-sm\">加入生词本</button>\n          <button type=\"button\" class=\"mk-btn mk-btn-primary mk-btn-sm\">复制</button>\n        \n\n已复制 ✓\n",
+    "addVocab": {
+      "term": "useEffect",
+      "queryType": "word",
+      "pageUrl": "https://example.test/article",
+      "pageTitle": "Harbour News",
+      "phonetic": "",
+      "part_of_speech": "",
+      "short_meaning": "React 副作用 Hook",
+      "context_meaning": "",
+      "examples": [],
+      "memory_tip": ""
+    },
+    "copied": "【useEffect】\n\n基础释义: React 副作用 Hook"
+  },
+  "fallback-friendly": {
+    "title": "单词解释",
+    "queryType": "word",
+    "body": "\n            <div class=\"zeh-result\">\n              <div class=\"zeh-term zeh-term-sentence\">harbour</div>\n              <div class=\"zeh-error\">没有查到解释，请稍后重试</div>\n              <div class=\"zeh-duration\">0.8s</div>\n            </div>\n          ",
+    "updates": "\n        <div class=\"zeh-panel-header\">\n          <span class=\"zeh-panel-title\">Manekilex</span>\n          <img class=\"zeh-panel-header-cat\" src=\"chrome-extension://test-extension/icons/css_5.png\" alt=\"\" />\n          <div class=\"zeh-panel-header-right\">\n            <div class=\"zeh-panel-actions\">\n              <button type=\"button\" class=\"zeh-panel-settings\" title=\"设置\">&#9881;</button>\n              <button type=\"button\" class=\"zeh-panel-close\" title=\"关闭\">×</button>\n            </div>\n          </div>\n        </div>\n        <div class=\"zeh-panel-body\"></div>\n        <div class=\"zeh-panel-footer\" hidden></div>\n      \n\n\n单词解释\n<body>\n"
+  },
+  "fallback-json": {
+    "title": "单词解释",
+    "queryType": "word",
+    "body": "\n          <div class=\"zeh-result\">\n            <div class=\"zeh-term\">harbour</div>\n            <div class=\"zeh-error\">JSON 解析失败，以下为原始返回：</div>\n            <pre class=\"zeh-fallback\">{&quot;term&quot;: &quot;harbour&quot;, &quot;short_</pre>\n            <div class=\"zeh-duration\">0.8s</div>\n          </div>\n        ",
+    "updates": "\n        <div class=\"zeh-panel-header\">\n          <span class=\"zeh-panel-title\">Manekilex</span>\n          <img class=\"zeh-panel-header-cat\" src=\"chrome-extension://test-extension/icons/css_5.png\" alt=\"\" />\n          <div class=\"zeh-panel-header-right\">\n            <div class=\"zeh-panel-actions\">\n              <button type=\"button\" class=\"zeh-panel-settings\" title=\"设置\">&#9881;</button>\n              <button type=\"button\" class=\"zeh-panel-close\" title=\"关闭\">×</button>\n            </div>\n          </div>\n        </div>\n        <div class=\"zeh-panel-body\"></div>\n        <div class=\"zeh-panel-footer\" hidden></div>\n      \n\n\n单词解释\n<body>\n"
+  },
+  "error": {
+    "title": "单词解释",
+    "queryType": "word",
+    "body": "\n        <div class=\"zeh-result\">\n          <div class=\"zeh-term zeh-term-sentence\">harbour</div>\n          <div class=\"zeh-error\">请求失败：429</div>\n        </div>\n      ",
+    "updates": "\n        <div class=\"zeh-panel-header\">\n          <span class=\"zeh-panel-title\">Manekilex</span>\n          <img class=\"zeh-panel-header-cat\" src=\"chrome-extension://test-extension/icons/css_5.png\" alt=\"\" />\n          <div class=\"zeh-panel-header-right\">\n            <div class=\"zeh-panel-actions\">\n              <button type=\"button\" class=\"zeh-panel-settings\" title=\"设置\">&#9881;</button>\n              <button type=\"button\" class=\"zeh-panel-close\" title=\"关闭\">×</button>\n            </div>\n          </div>\n        </div>\n        <div class=\"zeh-panel-body\"></div>\n        <div class=\"zeh-panel-footer\" hidden></div>\n      \n\n\n单词解释\n<body>\n"
+  },
+  "no-api-key": {
+    "title": "单词解释",
+    "queryType": "word",
+    "body": "\n        <div class=\"zeh-result\">\n          <div class=\"zeh-term\">harbour</div>\n          <div class=\"zeh-error\">请先配置 API Key</div>\n          <button type=\"button\" class=\"mk-btn mk-btn-primary mk-btn-settings-inline\">前往设置填写 API Key</button>\n        </div>\n      ",
+    "updates": "\n        <div class=\"zeh-panel-header\">\n          <span class=\"zeh-panel-title\">Manekilex</span>\n          <img class=\"zeh-panel-header-cat\" src=\"chrome-extension://test-extension/icons/css_5.png\" alt=\"\" />\n          <div class=\"zeh-panel-header-right\">\n            <div class=\"zeh-panel-actions\">\n              <button type=\"button\" class=\"zeh-panel-settings\" title=\"设置\">&#9881;</button>\n              <button type=\"button\" class=\"zeh-panel-close\" title=\"关闭\">×</button>\n            </div>\n          </div>\n        </div>\n        <div class=\"zeh-panel-body\"></div>\n        <div class=\"zeh-panel-footer\" hidden></div>\n      \n\n\n单词解释\n<body>\n\n"
+  },
+  "no-english": {
+    "title": "",
+    "queryType": "word",
+    "body": "\n        <div class=\"zeh-result\">\n          <div class=\"zeh-term zeh-term-sentence\">你好世界</div>\n          <div class=\"zeh-error\">请先选中要解释的文本。</div>\n        </div>\n      ",
+    "updates": "\n        <div class=\"zeh-panel-header\">\n          <span class=\"zeh-panel-title\">Manekilex</span>\n          <img class=\"zeh-panel-header-cat\" src=\"chrome-extension://test-extension/icons/css_5.png\" alt=\"\" />\n          <div class=\"zeh-panel-header-right\">\n            <div class=\"zeh-panel-actions\">\n              <button type=\"button\" class=\"zeh-panel-settings\" title=\"设置\">&#9881;</button>\n              <button type=\"button\" class=\"zeh-panel-close\" title=\"关闭\">×</button>\n            </div>\n          </div>\n        </div>\n        <div class=\"zeh-panel-body\"></div>\n        <div class=\"zeh-panel-footer\" hidden></div>\n      \n\n\n<body>\n\n"
+  },
+  "too-long": {
+    "title": "",
+    "queryType": "word",
+    "body": "\n        <div class=\"zeh-result\">\n          <div class=\"zeh-term zeh-term-sentence\">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx…</div>\n          <div class=\"zeh-error\">选中文本太长。Manekilex 更适合解释单词、句子和短段落，请缩短到 3000 字符以内。</div>\n        </div>\n      ",
+    "updates": "\n        <div class=\"zeh-panel-header\">\n          <span class=\"zeh-panel-title\">Manekilex</span>\n          <img class=\"zeh-panel-header-cat\" src=\"chrome-extension://test-extension/icons/css_5.png\" alt=\"\" />\n          <div class=\"zeh-panel-header-right\">\n            <div class=\"zeh-panel-actions\">\n              <button type=\"button\" class=\"zeh-panel-settings\" title=\"设置\">&#9881;</button>\n              <button type=\"button\" class=\"zeh-panel-close\" title=\"关闭\">×</button>\n            </div>\n          </div>\n        </div>\n        <div class=\"zeh-panel-body\"></div>\n        <div class=\"zeh-panel-footer\" hidden></div>\n      \n\n\n<body>\n\n"
+  },
+  "easter-egg": {
+    "title": "Manekilex",
+    "queryType": "word",
+    "body": "\n        <div class=\"zeh-result mk-manekilex-egg\">\n          <div class=\"mk-manekilex-danmaku\" aria-hidden=\"true\"></div>\n          <div class=\"mk-manekilex-hero\">\n            <img class=\"mk-manekilex-lucky mk-manekilex-lucky-left\" src=\"chrome-extension://test-extension/icons/lucky1.png\" alt=\"\" width=\"335\" height=\"335\" decoding=\"async\" />\n            <div class=\"mk-manekilex-logo\">ZAMP</div>\n            <img class=\"mk-manekilex-lucky mk-manekilex-lucky-right\" src=\"chrome-extension://test-extension/icons/lucky2.png\" alt=\"\" width=\"365\" height=\"365\" decoding=\"async\" />\n          </div>\n        </div>\n      ",
+    "updates": "\n        <div class=\"zeh-panel-header\">\n          <span class=\"zeh-panel-title\">Manekilex</span>\n          <img class=\"zeh-panel-header-cat\" src=\"chrome-extension://test-extension/icons/css_5.png\" alt=\"\" />\n          <div class=\"zeh-panel-header-right\">\n            <div class=\"zeh-panel-actions\">\n              <button type=\"button\" class=\"zeh-panel-settings\" title=\"设置\">&#9881;</button>\n              <button type=\"button\" class=\"zeh-panel-close\" title=\"关闭\">×</button>\n            </div>\n          </div>\n        </div>\n        <div class=\"zeh-panel-body\"></div>\n        <div class=\"zeh-panel-footer\" hidden></div>\n      \n\n\nManekilex\n<body>\n\n\n"
+  }
+}

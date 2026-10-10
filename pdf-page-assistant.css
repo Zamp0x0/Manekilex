@@ -1,0 +1,204 @@
+#zeh-pdf-assistant {
+  --zeh-pdf-ball-top: 30px;
+  --zeh-pdf-ball-right: 46px;
+  --zeh-pdf-ball-size: 48px;
+  --zeh-pdf-ball-gap: 8px;
+  --zeh-pdf-panel-width: clamp(380px, 26vw, 460px);
+  --zeh-pdf-panel-max-height: min(
+    580px,
+    calc(100vh - var(--zeh-pdf-ball-top) - var(--zeh-pdf-ball-size) - var(--zeh-pdf-ball-gap) - 24px)
+  );
+  --zeh-pdf-cat-space: 44px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  overflow: visible;
+  z-index: 2147483646;
+  pointer-events: none;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+/* PDF 由 Manekilex 增强阅读器接管时（或等待后台确认时）整体隐藏 */
+#zeh-pdf-assistant[hidden] {
+  display: none !important;
+}
+
+#zeh-pdf-assistant > * {
+  pointer-events: auto;
+}
+
+.zeh-pdf-assistant-ball {
+  all: unset;
+  box-sizing: border-box;
+  position: fixed;
+  top: var(--zeh-pdf-ball-top);
+  right: var(--zeh-pdf-ball-right);
+  z-index: 2147483647;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--zeh-pdf-ball-size);
+  height: var(--zeh-pdf-ball-size);
+  cursor: pointer;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ffe8a8, #fffdf7);
+  box-shadow: 0 4px 14px rgba(216, 52, 36, 0.28);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.zeh-pdf-assistant-ball:hover {
+  transform: scale(1.06);
+  box-shadow: 0 6px 18px rgba(216, 52, 36, 0.34);
+}
+
+.zeh-pdf-assistant-ball.is-busy {
+  cursor: progress;
+  animation: zeh-pdf-ball-busy 1s ease-in-out infinite alternate;
+}
+
+@keyframes zeh-pdf-ball-busy {
+  from {
+    transform: scale(0.94);
+  }
+  to {
+    transform: scale(1.04);
+  }
+}
+
+.zeh-pdf-assistant-ball img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.zeh-pdf-assistant-mount {
+  position: fixed;
+  top: calc(var(--zeh-pdf-ball-top) + var(--zeh-pdf-ball-size) + var(--zeh-pdf-ball-gap));
+  right: var(--zeh-pdf-ball-right);
+  z-index: 2147483646;
+  width: var(--zeh-pdf-panel-width);
+  max-width: min(460px, calc(100vw - var(--zeh-pdf-ball-right) - 16px));
+  padding-top: var(--zeh-pdf-cat-space);
+  overflow: visible;
+}
+
+#zeh-pdf-assistant:not(.expanded) .zeh-pdf-assistant-mount {
+  display: none;
+}
+
+#zeh-pdf-assistant .zeh-panel {
+  position: relative !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  max-height: var(--zeh-pdf-panel-max-height) !important;
+  height: auto;
+  left: auto !important;
+  top: auto !important;
+  border: none !important;
+  outline: none !important;
+  overflow: visible !important;
+  display: flex !important;
+  flex-direction: column !important;
+  font-size: 15px !important;
+  box-shadow: 0 10px 36px rgba(90, 53, 24, 0.18);
+}
+
+#zeh-pdf-assistant .zeh-panel-header {
+  overflow: visible !important;
+}
+
+#zeh-pdf-assistant .zeh-panel-header-cat {
+  width: 72px !important;
+  height: 72px !important;
+  top: calc(-1 * var(--zeh-pdf-cat-space) + 2px) !important;
+  right: calc(100% - 118px) !important;
+}
+
+#zeh-pdf-assistant .zeh-panel-title {
+  font-size: 18px !important;
+}
+
+#zeh-pdf-assistant .zeh-panel-body {
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+}
+
+#zeh-pdf-assistant .zeh-term {
+  font-size: 20px !important;
+}
+
+#zeh-pdf-assistant .zeh-term-sentence {
+  font-size: 16px !important;
+}
+
+#zeh-pdf-assistant .zeh-result,
+#zeh-pdf-assistant .zeh-loading-wrap {
+  padding: 16px 18px 14px !important;
+}
+
+#zeh-pdf-assistant .zeh-panel-footer {
+  padding: 12px 14px !important;
+}
+
+#zeh-pdf-assistant .zeh-panel .mk-btn {
+  min-height: 38px !important;
+  font-size: 14px !important;
+}
+
+/* 回到增强阅读器不可用时的说明（原因 + 可用的办法），不离开当前页面 */
+.zeh-pdf-assistant-notice {
+  position: fixed;
+  top: calc(var(--zeh-pdf-ball-top) + var(--zeh-pdf-ball-size) + var(--zeh-pdf-ball-gap));
+  right: var(--zeh-pdf-ball-right);
+  z-index: 2147483646;
+  box-sizing: border-box;
+  width: min(360px, calc(100vw - var(--zeh-pdf-ball-right) - 16px));
+  padding: 14px 16px 12px;
+  border-radius: 12px;
+  background: #fffdf7;
+  color: #3b2a1a;
+  box-shadow: 0 10px 36px rgba(90, 53, 24, 0.18);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.zeh-pdf-assistant-notice[hidden] {
+  display: none !important;
+}
+
+.zeh-pdf-assistant-notice-text {
+  margin: 0 0 10px;
+}
+
+.zeh-pdf-assistant-notice-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.zeh-pdf-assistant-notice-btn {
+  all: unset;
+  box-sizing: border-box;
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: #d83424;
+  color: #fff;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.zeh-pdf-assistant-notice-btn:focus-visible {
+  outline: 2px solid #d83424;
+  outline-offset: 2px;
+}
+
+.zeh-pdf-assistant-notice-close {
+  background: #f1e6d6;
+  color: #3b2a1a;
+}

@@ -1,0 +1,93 @@
+name: Browser tests
+
+# The extension in a real browser: Chrome for Testing (stable channel, 151 or newer, so
+# chrome.mimeHandler is available) with the extension loaded from the checkout. The enhanced PDF
+# reader (tests/browser/pdf-reader.browser.js) and the other lookup hosts: web pages, same- and
+# cross-origin iframes, the EPUB reader, popup, settings and a stopped / woken service worker
+# (tests/browser/lookup-hosts.browser.js), and the EPUB reader's scrolling, chapter switching,
+# settings, multi-tab and deletion behaviour (tests/browser/reader.browser.js), and provider
+# settings saved by the service worker across a worker stop
+# (tests/browser/settings-providers.browser.js). Pages and PDFs
+# come from a local HTTP server, provider calls are answered by a stub inside the service worker,
+# and every other host name resolves to nothing: no API keys, no network calls beyond the
+# downloads below. The suite runs twice: on the checkout, and on the unpacked private release
+# archive of scripts/package-release.js (so the archive is known to contain everything the
+# extension loads). The archive is not uploaded or published.
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: browser-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  browser:
+    name: Lookup hosts and PDF reader in Chrome for Testing (${{ matrix.extension }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        extension: [checkout, release-archive]
+    steps:
+      - name: Check out
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js 22
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Playwright drives the browser; it is installed without touching package.json / the lockfile.
+      - name: Install Chrome for Testing and Playwright
+        run: |
+          npx --yes @puppeteer/browsers@2.6.1 install chrome@stable --path "$RUNNER_TEMP/browsers" | tee "$RUNNER_TEMP/chrome.txt"
+          CHROME="$(awk 'END { print $2 }' "$RUNNER_TEMP/chrome.txt")"
+          "$CHROME" --version
+          echo "::notice title=Chrome for Testing::$("$CHROME" --version)"
+          echo "MK_BROWSER_PATH=$CHROME" >> "$GITHUB_ENV"
+          npm install --no-save --no-package-lock playwright-core@1.56.1
+
+      - name: Build and unpack the private release archive
+        if: matrix.extension == 'release-archive'
+        run: |
+          node scripts/package-release.js --out "$RUNNER_TEMP/dist"
+          mkdir "$RUNNER_TEMP/extension"
+          unzip -q "$RUNNER_TEMP"/dist/*.zip -d "$RUNNER_TEMP/extension"
+          echo "MK_EXTENSION_DIR=$RUNNER_TEMP/extension" >> "$GITHUB_ENV"
+
+      - name: Browser tests (the PDF MIME handler tests must run, not skip)
+        env:
+          MK_REQUIRE_MIME: "1"
+          MK_HEADED: "1"
+        run: |
+          set -o pipefail
+          xvfb-run -a npm run test:browser 2>&1 | tee "$RUNNER_TEMP/browser-tests.tap"
+
+      # The job log is not always at hand: each failing test also becomes an annotation (name and
+      # the first lines of its error), which the checks API and the run page both show.
+      - name: Name the failing browser tests
+        if: failure()
+        run: |
+          node -e '
+            const lines = require("fs").readFileSync(process.argv[1], "utf8").split("\n");
+            const esc = (s) => s.replace(/%/g, "%25").replace(/\r/g, "").replace(/\n/g, "%0A");
+            lines.forEach((line, i) => {
+              const m = line.match(/^\s*not ok \d+ - (.*)$/);
+              if (!m) return;
+              const end = lines.findIndex((l, j) => j > i && /^\s*(# Subtest|ok |not ok )/.test(l));
+              const detail = lines.slice(i + 1, end < 0 ? i + 40 : end).map((l) => l.trim()).filter((l) => l && !/^(---|\.\.\.|duration_ms:|type:|failureType:|code:)/.test(l));
+              console.log(`::error title=${esc(m[1]).replace(/[:,]/g, " ")}::${esc(detail.slice(0, 14).join("\n"))}`);
+            });
+          ' "$RUNNER_TEMP/browser-tests.tap"

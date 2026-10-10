@@ -1,0 +1,110 @@
+{
+  "appearance": {
+    "ids": [
+      "ballStart",
+      "ballEnd",
+      "previewBall",
+      "saveThemeBtn",
+      "resetThemeBtn",
+      "themeStatus"
+    ],
+    "actions": []
+  },
+  "models": {
+    "ids": [
+      "saveStatus",
+      "benchmarkPanelMount"
+    ],
+    "actions": []
+  },
+  "usage": {
+    "ids": [
+      "usageChart",
+      "usageYearHeatmap"
+    ],
+    "actions": []
+  },
+  "vocabulary": {
+    "ids": [
+      "vocabSearch",
+      "exportFormat",
+      "exportScope",
+      "exportVocabBtn",
+      "copyVocabBtn",
+      "exportStatus",
+      "vocabList"
+    ],
+    "actions": []
+  },
+  "review": {
+    "ids": [
+      "reviewStats",
+      "reviewView"
+    ],
+    "actions": []
+  },
+  "data": {
+    "ids": [
+      "cleanupExpiredCacheBtn",
+      "clearCacheBtn",
+      "clearUsageLogsBtn",
+      "clearReaderPosBtn",
+      "resetAllReadingProgressBtn",
+      "dataCacheList",
+      "dataStatus"
+    ],
+    "actions": []
+  },
+  "live-transcribe": {
+    "ids": [
+      "ltApiKey",
+      "ltSaveKeyBtn",
+      "ltTranslateProvider",
+      "ltProviderHint",
+      "ltConnStatus",
+      "ltInputStatus",
+      "ltMicLevel",
+      "ltMicLevelBar",
+      "ltTabCaptureHint",
+      "ltStartBtn",
+      "ltStopBtn",
+      "ltTranslateBtn",
+      "ltCopyBtn",
+      "ltExportBilingualBtn",
+      "ltExportEnglishBtn",
+      "ltClearBtn",
+      "ltStatus",
+      "ltFollowLatestBtn",
+      "ltCurrentEnScroll",
+      "liveCurrentEnglish",
+      "ltEnglishScroll",
+      "englishHistoryList",
+      "ltCurrentZhScroll",
+      "liveCurrentChinese",
+      "ltChineseScroll",
+      "chineseHistoryList"
+    ],
+    "actions": []
+  },
+  "reading": {
+    "ids": [
+      "pdfReaderCard",
+      "pdfHandlerToggle",
+      "pdfHandlerStatus",
+      "openPdfReaderBtn",
+      "bookUpload",
+      "readingHint",
+      "bookImportProgress",
+      "bookImportMessage",
+      "bookImportBar",
+      "bookImportCancel",
+      "pdfModeDialog",
+      "bookRenameDialog",
+      "bookRenameInput",
+      "bookRenameSave",
+      "bookRenameCancel",
+      "bookshelf"
+    ],
+    "actions": []
+  }
+}

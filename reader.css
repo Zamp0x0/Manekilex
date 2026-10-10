@@ -1,0 +1,1319 @@
+:root {
+
+  --reader-accent: #d83424;
+
+  --reader-content-width: 1360px;
+
+  --reader-viewport-gutter: 96px;
+
+  --reader-shell-bg: #f2f2f2;
+
+  --reader-paper-bg: #fff8e8;
+
+  --reader-paper-border: #eadfca;
+
+}
+
+
+
+* {
+
+  box-sizing: border-box;
+
+}
+
+
+
+html,
+
+body {
+
+  margin: 0;
+
+  padding: 0;
+
+  width: 100%;
+
+  height: 100%;
+
+  overflow-x: hidden;
+
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", "PingFang SC",
+
+    "Microsoft YaHei", Arial, sans-serif;
+
+  color: #1a1a1a;
+
+}
+
+
+
+html,
+
+body,
+
+.reader-root,
+
+.reader-main,
+
+.reader-stage {
+
+  background: var(--reader-shell-bg) !important;
+
+}
+
+
+
+.reader-root {
+
+  width: 100%;
+
+  max-width: 100vw;
+
+  overflow-x: hidden;
+
+  box-sizing: border-box;
+
+  background: var(--reader-shell-bg) !important;
+
+}
+
+
+
+/* ── 顶部工具栏 ─────────────────────────────────────────────────────────────── */
+
+.reader-toolbar {
+
+  position: fixed;
+
+  top: 0;
+
+  left: 0;
+
+  right: 0;
+
+  width: 100%;
+
+  max-width: 100vw;
+
+  height: 52px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 0 12px;
+
+  background: #fff;
+
+  border-bottom: 1px solid #e5e7eb;
+
+  z-index: 50;
+
+  overflow-x: hidden;
+
+  box-sizing: border-box;
+
+}
+
+
+
+.reader-title {
+
+  flex: 1;
+
+  min-width: 0;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  color: #1a1a1a;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+}
+
+
+
+.reader-progress {
+
+  font-size: 12px;
+
+  color: #888;
+
+  min-width: 52px;
+
+  text-align: right;
+
+  white-space: nowrap;
+
+  flex-shrink: 0;
+
+}
+
+
+
+.reader-fontctl {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  padding: 0 4px;
+
+  flex-shrink: 0;
+
+}
+
+
+
+.reader-fontsize {
+
+  font-size: 12px;
+
+  color: #6b7280;
+
+  min-width: 38px;
+
+  text-align: center;
+
+  white-space: nowrap;
+
+}
+
+
+
+.reader-icon-btn {
+
+  min-width: 34px;
+
+  padding: 6px 8px;
+
+  font-weight: 700;
+
+}
+
+
+
+.reader-widthctl {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 4px;
+
+  padding: 0 2px;
+
+  flex-shrink: 0;
+
+}
+
+
+
+.reader-width-btn {
+
+  min-width: 40px;
+
+  padding: 6px 8px;
+
+  font-size: 12px;
+
+}
+
+
+
+.reader-width-btn.is-active {
+
+  border-color: var(--reader-accent, #d83424);
+
+  color: var(--reader-accent, #d83424);
+
+  background: #fff7f3;
+
+}
+
+
+
+.reader-tb-actions {
+
+  display: flex;
+
+  gap: 8px;
+
+  flex-shrink: 0;
+
+}
+
+
+
+.reader-tb-btn {
+
+  white-space: nowrap;
+
+}
+
+
+
+.reader-tb-btn {
+
+  border: 1px solid #ddd;
+
+  background: #fff;
+
+  color: #444;
+
+  font-size: 13px;
+
+  border-radius: 8px;
+
+  padding: 6px 12px;
+
+  cursor: pointer;
+
+  transition: background 0.15s ease, border-color 0.15s ease;
+
+}
+
+
+
+.reader-tb-btn:hover {
+
+  background: #f5f5f5;
+
+  border-color: #ccc;
+
+}
+
+
+
+/* ── 阅读区布局（目录 + 正文）────────────────────────────────────────────────── */
+
+.reader-layout {
+
+  display: grid;
+
+  grid-template-columns: var(--reader-toc-width, 260px) minmax(0, 1fr);
+
+  position: absolute;
+
+  top: 52px;
+
+  left: 0;
+
+  right: 0;
+
+  bottom: 0;
+
+  overflow: hidden;
+
+  background: var(--reader-shell-bg) !important;
+
+}
+
+
+
+.reader-layout.toc-collapsed {
+
+  grid-template-columns: minmax(0, 1fr);
+
+}
+
+
+
+.reader-toc-panel {
+
+  width: var(--reader-toc-width, 260px);
+
+  min-width: var(--reader-toc-width, 260px);
+
+  overflow-y: auto;
+
+  overflow-x: hidden;
+
+  background: var(--reader-shell-bg, #f2f2f2);
+
+  border-right: 1px solid rgba(0, 0, 0, 0.08);
+
+  padding: 12px;
+
+  box-sizing: border-box;
+
+}
+
+
+
+.reader-layout.toc-collapsed .reader-toc-panel {
+
+  display: none;
+
+  width: 0;
+
+  min-width: 0;
+
+  padding: 0;
+
+  border: 0;
+
+}
+
+
+
+.reader-toc-header {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  font-weight: 700;
+
+  margin-bottom: 10px;
+
+  font-size: 14px;
+
+  color: #1a1a1a;
+
+}
+
+
+
+.reader-toc-collapse-btn {
+
+  width: auto;
+
+  height: auto;
+
+  min-width: 24px;
+
+  min-height: 24px;
+
+  border: 0;
+
+  border-radius: 0;
+
+  background: transparent;
+
+  color: #5c4a3a;
+
+  font-size: 18px;
+
+  font-weight: 600;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 0 2px;
+
+  flex-shrink: 0;
+
+}
+
+
+
+.reader-toc-collapse-btn:hover {
+
+  background: transparent;
+
+  color: #4a3c30;
+
+}
+
+
+
+.reader-toc-expand-tab {
+
+  position: absolute;
+
+  left: 0;
+
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  z-index: 60;
+
+  width: auto;
+
+  height: auto;
+
+  min-width: 24px;
+
+  min-height: 48px;
+
+  border: 0;
+
+  border-radius: 0;
+
+  background: transparent;
+
+  color: #5c4a3a;
+
+  cursor: pointer;
+
+  font-size: 18px;
+
+  font-weight: 600;
+
+  box-shadow: none;
+
+  padding: 0 4px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+}
+
+
+
+.reader-toc-expand-tab:hover {
+
+  background: transparent;
+
+  color: #4a3c30;
+
+}
+
+
+
+.reader-toc-expand-tab[hidden] {
+
+  display: none !important;
+
+}
+
+
+
+.reader-toc-list {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 2px;
+
+}
+
+
+
+.reader-toc-empty {
+
+  font-size: 13px;
+
+  color: #6b7280;
+
+  padding: 8px 4px;
+
+}
+
+
+
+.reader-toc-item {
+
+  display: block;
+
+  width: 100%;
+
+  text-align: left;
+
+  border: 0;
+
+  background: transparent;
+
+  padding: 8px 10px;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  font-size: 14px;
+
+  color: #333;
+
+  line-height: 1.35;
+
+}
+
+
+
+.reader-toc-item:hover {
+
+  background: rgba(0, 0, 0, 0.06);
+
+}
+
+
+
+.reader-toc-item.is-active {
+
+  background: rgba(255, 107, 74, 0.12);
+
+  color: #ff5a3d;
+
+  font-weight: 700;
+
+}
+
+
+
+.reader-toc-item.depth-1 {
+
+  padding-left: 20px;
+
+}
+
+
+
+.reader-toc-item.depth-2 {
+
+  padding-left: 34px;
+
+}
+
+
+
+/* ── 阅读区 ─────────────────────────────────────────────────────────────────── */
+
+.reader-main {
+
+  width: 100%;
+
+  max-width: 100%;
+
+  overflow-x: hidden;
+
+  box-sizing: border-box;
+
+  background: var(--reader-shell-bg) !important;
+
+  position: relative;
+
+  min-width: 0;
+
+}
+
+
+
+.reader-stage {
+
+  position: relative;
+
+  top: auto;
+
+  left: auto;
+
+  right: auto;
+
+  bottom: auto;
+
+  display: flex;
+
+  justify-content: center;
+
+  overflow: hidden;
+
+  background: var(--reader-shell-bg) !important;
+
+  width: 100%;
+
+  height: 100%;
+
+}
+
+
+
+.reader-viewer,
+
+.reader-viewer iframe,
+
+.epub-container,
+
+.epub-view,
+
+.reader-content {
+
+  background: var(--reader-paper-bg) !important;
+
+  background-color: var(--reader-paper-bg) !important;
+
+}
+
+
+
+.reader-viewer,
+
+.reader-content {
+
+  width: var(--reader-content-width);
+
+  max-width: 100%;
+
+  height: 100%;
+
+  padding: 0;
+
+  box-shadow: 0 0 0 1px var(--reader-paper-border);
+
+  overflow-x: hidden;
+
+  box-sizing: border-box;
+
+  margin: 0 auto;
+
+}
+
+
+
+.reader-viewer > div,
+
+.reader-viewer [class*="epub-container"],
+
+.reader-viewer [class*="epub-view"] {
+
+  background: var(--reader-paper-bg) !important;
+
+}
+
+
+
+body.reader-restoring .reader-viewer {
+
+  background: var(--reader-paper-bg) !important;
+
+  visibility: hidden;
+
+}
+
+
+
+body.reader-resize-pending .reader-main,
+body.reader-resize-pending .reader-stage,
+body.reader-resize-pending .reader-viewer {
+
+  visibility: hidden;
+
+}
+
+
+
+body.reader-restoring .reader-stage::after {
+
+  content: "正在恢复阅读位置…";
+
+  position: absolute;
+
+  inset: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  color: #8a7358;
+
+  font-size: 14px;
+
+  background: var(--reader-paper-bg);
+
+  pointer-events: none;
+
+  z-index: 1;
+
+}
+
+
+
+/* epub.js manager container 禁止横向溢出 */
+
+.reader-viewer > div,
+
+.reader-viewer [class*="epub-container"] {
+
+  width: 100% !important;
+
+  max-width: 100% !important;
+
+  overflow-x: hidden !important;
+
+  box-sizing: border-box !important;
+
+}
+
+
+
+.reader-viewer [class*="epub-view"] {
+
+  max-width: 100% !important;
+
+  box-sizing: border-box !important;
+
+}
+
+
+
+/* 单章节滚动：iframe 内禁止独立滚动，wheel 统一由外层 container 处理 */
+
+.reader-viewer iframe {
+
+  width: 100% !important;
+
+  max-width: 100% !important;
+
+  overflow: hidden !important;
+
+  background: var(--reader-paper-bg) !important;
+
+}
+
+
+
+/* epub.js 注入的内容容器，限制阅读宽度与行高在 reader.js 通过 themes 设置 */
+
+
+
+.reader-message {
+
+  position: absolute;
+
+  top: 40%;
+
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  font-size: 14px;
+
+  color: #888;
+
+  text-align: center;
+
+  max-width: min(360px, calc(100vw - 48px));
+
+}
+
+
+
+/* ── 书签面板（fixed overlay，不挤压正文）──────────────────────────────────────── */
+
+.reader-theme-panel {
+
+  position: fixed;
+
+  top: 56px;
+
+  right: 18px;
+
+  width: 280px;
+
+  z-index: 10020;
+
+  background: #fff;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 12px;
+
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+
+  padding: 14px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 12px;
+
+}
+
+
+
+.reader-theme-panel[hidden] {
+
+  display: none !important;
+
+}
+
+
+
+.reader-theme-panel-head {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  color: #1a1a1a;
+
+}
+
+
+
+.reader-theme-close {
+
+  min-width: 28px;
+
+  padding: 0 8px;
+
+  font-size: 18px;
+
+  line-height: 1;
+
+}
+
+
+
+.reader-theme-section {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+
+}
+
+
+
+.reader-theme-label {
+
+  font-size: 12px;
+
+  color: #6b7280;
+
+}
+
+
+
+.reader-theme-choices {
+
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 8px;
+
+}
+
+
+
+.theme-choice {
+
+  height: 40px;
+
+  border: 2px solid #e5e7eb;
+
+  border-radius: 8px;
+
+  background: #fff;
+
+  font-size: 12px;
+
+  color: #374151;
+
+  cursor: pointer;
+
+  padding: 0 8px;
+
+}
+
+
+
+.theme-choice.is-active {
+
+  border: 2px solid #ff6b4a;
+
+}
+
+
+
+.reader-theme-swatches {
+
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 8px;
+
+}
+
+
+
+.reader-theme-swatch {
+
+  position: relative;
+
+  height: 44px;
+
+  border: 2px solid #e5e7eb;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  padding: 0;
+
+  overflow: hidden;
+
+}
+
+
+
+.reader-theme-swatch span {
+
+  position: absolute;
+
+  left: 0;
+
+  right: 0;
+
+  bottom: 0;
+
+  padding: 2px 6px;
+
+  font-size: 11px;
+
+  color: #374151;
+
+  background: rgba(255, 255, 255, 0.82);
+
+}
+
+
+
+.reader-theme-swatch.is-active {
+
+  border-color: var(--reader-accent);
+
+  box-shadow: 0 0 0 1px var(--reader-accent);
+
+}
+
+
+
+.bookmark-panel {
+
+  position: fixed;
+
+  top: 64px;
+
+  right: 24px;
+
+  width: 320px;
+
+  max-height: calc(100vh - 90px);
+
+  background: #fff;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 12px;
+
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.14);
+
+  z-index: 60;
+
+  flex-direction: column;
+
+  overflow: hidden;
+
+}
+
+
+
+.bookmark-panel[hidden] {
+
+  display: none !important;
+
+}
+
+
+
+.bookmark-panel:not([hidden]) {
+
+  display: flex;
+
+}
+
+
+
+.bookmark-panel-head {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  padding: 14px 16px;
+
+  border-bottom: 1px solid #eee;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+}
+
+
+
+.bookmark-list {
+
+  flex: 1;
+
+  overflow-y: auto;
+
+  padding: 12px;
+
+}
+
+
+
+.bookmark-empty {
+
+  text-align: center;
+
+  color: #999;
+
+  font-size: 13px;
+
+  padding: 32px 12px;
+
+}
+
+
+
+.bookmark-item {
+
+  border: 1px solid #eee;
+
+  border-radius: 8px;
+
+  padding: 10px 12px;
+
+  margin-bottom: 10px;
+
+}
+
+
+
+.bookmark-item-label {
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  color: #1a1a1a;
+
+  cursor: pointer;
+
+  margin-bottom: 4px;
+
+  word-break: break-word;
+
+}
+
+
+
+.bookmark-item-label:hover {
+
+  color: var(--reader-accent, #d83424);
+
+}
+
+
+
+.bookmark-item-excerpt {
+
+  font-size: 12px;
+
+  color: #888;
+
+  line-height: 1.4;
+
+  display: -webkit-box;
+
+  -webkit-line-clamp: 2;
+
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
+
+  margin-bottom: 6px;
+
+}
+
+
+
+.bookmark-item-actions {
+
+  display: flex;
+
+  gap: 8px;
+
+}
+
+
+
+.bookmark-item-actions button {
+
+  font-size: 12px;
+
+  border: 1px solid #ddd;
+
+  background: #fff;
+
+  border-radius: 6px;
+
+  padding: 3px 10px;
+
+  cursor: pointer;
+
+}
+
+
+
+/* ── 右键菜单 ───────────────────────────────────────────────────────────────── */
+
+.reader-ctxmenu {
+
+  position: fixed;
+
+  z-index: 2147483645;
+
+  background: #fff;
+
+  border: 1px solid #e0e0e0;
+
+  border-radius: 8px;
+
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+
+  padding: 4px;
+
+}
+
+
+
+.reader-ctxmenu button {
+
+  display: block;
+
+  width: 100%;
+
+  text-align: left;
+
+  border: none;
+
+  background: transparent;
+
+  font-size: 13px;
+
+  color: #1a1a1a;
+
+  padding: 8px 16px;
+
+  border-radius: 6px;
+
+  cursor: pointer;
+
+  white-space: nowrap;
+
+}
+
+
+
+.reader-ctxmenu button:hover {
+
+  background: #f5f5f5;
+
+}
+
+
+
+@media (max-width: 768px) {
+
+  :root {
+
+    --reader-viewport-gutter: 24px;
+
+  }
+
+
+
+  .reader-viewer,
+
+  .reader-content {
+
+    width: calc(100vw - var(--reader-viewport-gutter));
+
+    max-width: calc(100vw - var(--reader-viewport-gutter));
+
+    padding: 0;
+
+  }
+
+}
+
+
+
+@media (max-width: 600px) {
+
+  .bookmark-panel {
+
+    right: 8px;
+
+    left: 8px;
+
+    width: auto;
+
+  }
+
+}
+
+/* DEBUG_READER 诊断浮层（右下角，不影响阅读） */
+.reader-debug-overlay {
+  position: fixed;
+  right: 8px;
+  bottom: 8px;
+  z-index: 40;
+  max-width: min(520px, calc(100vw - 16px));
+  padding: 6px 10px;
+  font-size: 10px;
+  line-height: 1.45;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color: #374151;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  pointer-events: none;
+  opacity: 0.88;
+  word-break: break-all;
+}
+

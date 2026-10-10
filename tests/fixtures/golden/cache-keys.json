@@ -1,0 +1,81 @@
+{
+ "prefixes": [
+  "zehCache:",
+  "zehCache:v2:"
+ ],
+ "contextHash": "fbb6ea60",
+ "rows": [
+  {
+   "queryType": "word",
+   "text": "Bank",
+   "normalized": "bank",
+   "hash": "db7c57b5",
+   "v2": "zehCache:v2:word:4:db7c57b5",
+   "v2Short": "zehCache:v2:word:db7c57b5",
+   "legacy": "zehCache:word:bank",
+   "dedup": "word:db7c57b5",
+   "context": "zehCache:v2:word:4:db7c57b5:cfbb6ea60",
+   "contextDedup": "word:db7c57b5:cfbb6ea60"
+  },
+  {
+   "queryType": "word",
+   "text": "don’t",
+   "normalized": "don't",
+   "hash": "2c85a8d7",
+   "v2": "zehCache:v2:word:5:2c85a8d7",
+   "v2Short": "zehCache:v2:word:2c85a8d7",
+   "legacy": "zehCache:word:don't",
+   "dedup": "word:2c85a8d7",
+   "context": "zehCache:v2:word:5:2c85a8d7:cfbb6ea60",
+   "contextDedup": "word:2c85a8d7:cfbb6ea60"
+  },
+  {
+   "queryType": "phrase",
+   "text": "Take  Off",
+   "normalized": "take off",
+   "hash": "50ab13c6",
+   "v2": "zehCache:v2:phrase:8:50ab13c6",
+   "v2Short": "zehCache:v2:phrase:50ab13c6",
+   "legacy": "zehCache:phrase:take off",
+   "dedup": "phrase:50ab13c6",
+   "context": "zehCache:v2:phrase:8:50ab13c6:cfbb6ea60",
+   "contextDedup": "phrase:50ab13c6:cfbb6ea60"
+  },
+  {
+   "queryType": "code_term",
+   "text": "useEffect",
+   "normalized": "useeffect",
+   "hash": "c7c73b99",
+   "v2": "zehCache:v2:code_term:9:c7c73b99",
+   "v2Short": "zehCache:v2:code_term:c7c73b99",
+   "legacy": "zehCache:code_term:useeffect",
+   "dedup": "code_term:c7c73b99",
+   "context": "zehCache:v2:code_term:9:c7c73b99:cfbb6ea60",
+   "contextDedup": "code_term:c7c73b99:cfbb6ea60"
+  },
+  {
+   "queryType": "sentence",
+   "text": "The committee postponed the vote.",
+   "normalized": "The committee postponed the vote.",
+   "hash": "702e6ee9",
+   "v2": "zehCache:v2:sentence:33:702e6ee9",
+   "v2Short": "zehCache:v2:sentence:702e6ee9",
+   "legacy": "zehCache:sentence:the committee postponed the vote.",
+   "dedup": "sentence:702e6ee9",
+   "context": "zehCache:v2:sentence:33:702e6ee9:cfbb6ea60",
+   "contextDedup": "sentence:702e6ee9:cfbb6ea60"
+  },
+  {
+   "queryType": "paragraph",
+   "text": "It rained.  We stayed inside and read books all afternoon long.",
+   "normalized": "It rained. We stayed inside and read books all afternoon long.",
+   "hash": "ab5aea07",
+   "v2": "zehCache:v2:paragraph:62:ab5aea07",
+   "v2Short": "zehCache:v2:paragraph:ab5aea07",
+   "legacy": "zehCache:paragraph:it rained. we stayed inside and read books all afternoon long.",
+   "dedup": "paragraph:ab5aea07",
+   "context": "zehCache:v2:paragraph:62:ab5aea07:cfbb6ea60",
+   "contextDedup": "paragraph:ab5aea07:cfbb6ea60"
+  }
+ ]
+}

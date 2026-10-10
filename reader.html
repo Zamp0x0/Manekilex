@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manekilex Reader</title>
+  <link rel="stylesheet" href="mk-buttons.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="reader.css" />
+</head>
+<body class="reader-root">
+  <header class="reader-toolbar">
+    <button type="button" class="reader-tb-btn" id="backBtn" title="返回书架">← 书架</button>
+    <div class="reader-title" id="readerTitle">加载中…</div>
+    <div class="reader-progress" id="readerProgress">0%</div>
+    <div class="reader-fontctl">
+      <button type="button" class="reader-tb-btn reader-icon-btn" id="fontDecBtn" title="减小字号">A-</button>
+      <span class="reader-fontsize" id="fontSizeLabel">20px</span>
+      <button type="button" class="reader-tb-btn reader-icon-btn" id="fontIncBtn" title="增大字号">A+</button>
+    </div>
+    <div class="reader-widthctl" title="阅读区域宽度">
+      <button type="button" class="reader-tb-btn reader-width-btn" id="widthNarrowBtn" data-mode="narrow">窄</button>
+      <button type="button" class="reader-tb-btn reader-width-btn" id="widthNormalBtn" data-mode="normal">标准</button>
+      <button type="button" class="reader-tb-btn reader-width-btn" id="widthWideBtn" data-mode="wide">宽</button>
+    </div>
+    <div class="reader-tb-actions">
+      <button type="button" class="reader-tb-btn" id="readerTocToggleBtn" title="目录">目录</button>
+      <button type="button" class="reader-tb-btn" id="addBookmarkBtn" title="在当前位置添加书签">＋ 书签</button>
+      <button type="button" class="reader-tb-btn" id="toggleBookmarksBtn" title="书签列表">书签列表</button>
+      <button type="button" class="reader-tb-btn" id="toggleThemeBtn" title="阅读颜色">颜色</button>
+    </div>
+  </header>
+
+  <div class="reader-layout" id="readerLayout">
+    <aside id="readerTocPanel" class="reader-toc-panel">
+      <div class="reader-toc-header">
+        <span>目录</span>
+        <button type="button" class="reader-toc-collapse-btn" id="readerTocCollapseBtn" title="收起目录" aria-label="收起目录">«</button>
+      </div>
+      <div id="readerTocList" class="reader-toc-list"></div>
+    </aside>
+
+    <main class="reader-stage reader-main">
+      <div id="viewer" class="reader-viewer reader-content"></div>
+      <div class="reader-message" id="readerMessage" hidden></div>
+    </main>
+
+    <button type="button" class="reader-toc-expand-tab" id="readerTocExpandTab" hidden title="展开目录" aria-label="展开目录">»</button>
+  </div>
+
+  <aside class="reader-theme-panel" id="themePanel" hidden>
+    <div class="reader-theme-panel-head">
+      <span>阅读颜色</span>
+      <button type="button" class="reader-tb-btn reader-theme-close" id="closeThemeBtn" title="关闭">×</button>
+    </div>
+    <div class="reader-theme-section">
+      <div class="reader-theme-label">外部背景</div>
+      <div class="reader-theme-choices">
+        <button type="button" class="theme-choice" data-theme-type="shellBg" data-color="#f2f2f2">浅灰</button>
+        <button type="button" class="theme-choice" data-theme-type="shellBg" data-color="#ffffff">白色</button>
+        <button type="button" class="theme-choice" data-theme-type="shellBg" data-color="#f7f0df">米白</button>
+        <button type="button" class="theme-choice" data-theme-type="shellBg" data-color="#eef6ef">淡绿白</button>
+      </div>
+    </div>
+    <div class="reader-theme-section">
+      <div class="reader-theme-label">书页颜色</div>
+      <div class="reader-theme-choices">
+        <button type="button" class="theme-choice" data-theme-type="paperBg" data-color="#fff8e8">米白</button>
+        <button type="button" class="theme-choice" data-theme-type="paperBg" data-color="#fffdf7">纸白</button>
+        <button type="button" class="theme-choice" data-theme-type="paperBg" data-color="#ffffff">纯白</button>
+        <button type="button" class="theme-choice" data-theme-type="paperBg" data-color="#f3fbf3">淡绿白</button>
+      </div>
+    </div>
+  </aside>
+
+  <aside class="bookmark-panel" id="bookmarkPanel" hidden>
+    <div class="bookmark-panel-head">
+      <span>书签</span>
+      <button type="button" class="reader-tb-btn" id="closeBookmarksBtn">×</button>
+    </div>
+    <div class="bookmark-list" id="bookmarkList"></div>
+  </aside>
+
+  <div class="reader-ctxmenu" id="ctxMenu" hidden>
+    <button type="button" id="ctxAddBookmark">添加书签</button>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="lookup/dom-helpers.js"></script>
+  <script src="lookup/render.js"></script>
+  <script src="lookup/egg.js"></script>
+  <script src="lookup/tts.js"></script>
+  <script src="lookup/selection.js"></script>
+  <script src="lookup/context.js"></script>
+  <script src="lookup/runtime.js"></script>
+  <script src="lib/jszip.min.js"></script>
+  <script src="lib/epub.min.js"></script>
+  <script src="book-store.js"></script>
+  <script src="mk-lookup.js"></script>
+  <script src="reader/log.js"></script>
+  <script src="reader/progress.js"></script>
+  <script src="reader/selection.js"></script>
+  <script src="reader/theme.js"></script>
+  <script src="reader/bookmarks.js"></script>
+  <script src="reader/toc.js"></script>
+  <script src="reader.js"></script>
+</body>
+</html>

@@ -1,0 +1,694 @@
+{
+ "explain": {
+  "openai": {
+   "word": [
+    {
+     "method": "POST",
+     "url": "https://api.openai.com/v1/chat/completions",
+     "body": {
+      "model": "gpt-6-luna",
+      "messages": [
+       {
+        "role": "system",
+        "content": "{{system:word}}"
+       },
+       {
+        "role": "user",
+        "content": "serendipity"
+       }
+      ],
+      "temperature": 0.1,
+      "response_format": {
+       "type": "json_object"
+      },
+      "max_completion_tokens": 750,
+      "reasoning_effort": "none"
+     }
+    }
+   ],
+   "sentence": [
+    {
+     "method": "POST",
+     "url": "https://api.openai.com/v1/chat/completions",
+     "body": {
+      "model": "gpt-6-luna",
+      "messages": [
+       {
+        "role": "system",
+        "content": "{{system:sentence}}"
+       },
+       {
+        "role": "user",
+        "content": "The committee postponed the vote until the next quarterly meeting"
+       }
+      ],
+      "temperature": 0.1,
+      "response_format": {
+       "type": "json_object"
+      },
+      "max_completion_tokens": 800,
+      "reasoning_effort": "none"
+     }
+    }
+   ],
+   "wordInContext": [
+    {
+     "method": "POST",
+     "url": "https://api.openai.com/v1/chat/completions",
+     "body": {
+      "model": "gpt-6-luna",
+      "messages": [
+       {
+        "role": "system",
+        "content": "{{context:lookupWord}}"
+       },
+       {
+        "role": "user",
+        "content": "{\"term\":\"bank\",\"sentence\":\"We sat on the bank of the river and watched the boats.\",\"nearby\":\"It was a warm afternoon. We sat on the bank of the river and watched the boats.\"}"
+       }
+      ],
+      "temperature": 0.1,
+      "response_format": {
+       "type": "json_object"
+      },
+      "max_completion_tokens": 1000,
+      "reasoning_effort": "none"
+     }
+    }
+   ]
+  },
+  "deepseek": {
+   "word": [
+    {
+     "method": "POST",
+     "url": "https://api.deepseek.com/v1/chat/completions",
+     "body": {
+      "model": "deepseek-flash",
+      "messages": [
+       {
+        "role": "system",
+        "content": "{{system:word}}"
+       },
+       {
+        "role": "user",
+        "content": "serendipity"
+       }
+      ],
+      "temperature": 0.1,
+      "max_tokens": 750,
+      "response_format": {
+       "type": "json_object"
+      },
+      "thinking": {
+       "type": "disabled"
+      }
+     }
+    }
+   ],
+   "sentence": [
+    {
+     "method": "POST",
+     "url": "https://api.deepseek.com/v1/chat/completions",
+     "body": {
+      "model": "deepseek-flash",
+      "messages": [
+       {
+        "role": "system",
+        "content": "{{system:sentence}}"
+       },
+       {
+        "role": "user",
+        "content": "The committee postponed the vote until the next quarterly meeting"
+       }
+      ],
+      "temperature": 0.1,
+      "max_tokens": 800,
+      "response_format": {
+       "type": "json_object"
+      },
+      "thinking": {
+       "type": "disabled"
+      }
+     }
+    }
+   ],
+   "wordInContext": [
+    {
+     "method": "POST",
+     "url": "https://api.deepseek.com/v1/chat/completions",
+     "body": {
+      "model": "deepseek-flash",
+      "messages": [
+       {
+        "role": "system",
+        "content": "{{context:lookupWord}}"
+       },
+       {
+        "role": "user",
+        "content": "{\"term\":\"bank\",\"sentence\":\"We sat on the bank of the river and watched the boats.\",\"nearby\":\"It was a warm afternoon. We sat on the bank of the river and watched the boats.\"}"
+       }
+      ],
+      "temperature": 0.1,
+      "max_tokens": 1000,
+      "response_format": {
+       "type": "json_object"
+      },
+      "thinking": {
+       "type": "disabled"
+      }
+     }
+    }
+   ]
+  },
+  "moonshot": {
+   "word": [
+    {
+     "method": "POST",
+     "url": "https://api.moonshot.cn/v1/chat/completions",
+     "body": {
+      "model": "kimi-k2.6",
+      "messages": [
+       {
+        "role": "system",
+        "content": "{{system:word}}"
+       },
+       {
+        "role": "user",
+        "content": "serendipity"
+       }
+      ],
+      "response_format": {
+       "type": "json_object"
+      },
+      "max_completion_tokens": 750,
+      "thinking": {
+       "type": "disabled"
+      }
+     }
+    }
+   ],
+   "sentence": [
+    {
+     "method": "POST",
+     "url": "https://api.moonshot.cn/v1/chat/completions",
+     "body": {
+      "model": "kimi-k2.6",
+      "messages": [
+       {
+        "role": "system",
+        "content": "{{system:sentence}}"
+       },
+       {
+        "role": "user",
+        "content": "The committee postponed the vote until the next quarterly meeting"
+       }
+      ],
+      "response_format": {
+       "type": "json_object"
+      },
+      "max_completion_tokens": 800,
+      "thinking": {
+       "type": "disabled"
+      }
+     }
+    }
+   ],
+   "wordInContext": [
+    {
+     "method": "POST",
+     "url": "https://api.moonshot.cn/v1/chat/completions",
+     "body": {
+      "model": "kimi-k2.6",
+      "messages": [
+       {
+        "role": "system",
+        "content": "{{context:lookupWord}}"
+       },
+       {
+        "role": "user",
+        "content": "{\"term\":\"bank\",\"sentence\":\"We sat on the bank of the river and watched the boats.\",\"nearby\":\"It was a warm afternoon. We sat on the bank of the river and watched the boats.\"}"
+       }
+      ],
+      "response_format": {
+       "type": "json_object"
+      },
+      "max_completion_tokens": 1000,
+      "thinking": {
+       "type": "disabled"
+      }
+     }
+    }
+   ]
+  },
+  "zhipu": {
+   "word": [
+    {
+     "method": "POST",
+     "url": "https://open.bigmodel.cn/api/paas/v4/chat/completions",
+     "body": {
+      "model": "glm-4-flash",
+      "messages": [
+       {
+        "role": "system",
+        "content": "{{system:word}}"
+       },
+       {
+        "role": "user",
+        "content": "serendipity"
+       }
+      ],
+      "temperature": 0.1,
+      "max_tokens": 750,
+      "response_format": {
+       "type": "json_object"
+      }
+     }
+    }
+   ],
+   "sentence": [
+    {
+     "method": "POST",
+     "url": "https://open.bigmodel.cn/api/paas/v4/chat/completions",
+     "body": {
+      "model": "glm-4-flash",
+      "messages": [
+       {
+        "role": "system",
+        "content": "{{system:sentence}}"
+       },
+       {
+        "role": "user",
+        "content": "The committee postponed the vote until the next quarterly meeting"
+       }
+      ],
+      "temperature": 0.1,
+      "max_tokens": 800,
+      "response_format": {
+       "type": "json_object"
+      }
+     }
+    }
+   ],
+   "wordInContext": [
+    {
+     "method": "POST",
+     "url": "https://open.bigmodel.cn/api/paas/v4/chat/completions",
+     "body": {
+      "model": "glm-4-flash",
+      "messages": [
+       {
+        "role": "system",
+        "content": "{{context:lookupWord}}"
+       },
+       {
+        "role": "user",
+        "content": "{\"term\":\"bank\",\"sentence\":\"We sat on the bank of the river and watched the boats.\",\"nearby\":\"It was a warm afternoon. We sat on the bank of the river and watched the boats.\"}"
+       }
+      ],
+      "temperature": 0.1,
+      "max_tokens": 1000,
+      "response_format": {
+       "type": "json_object"
+      }
+     }
+    }
+   ]
+  },
+  "siliconflow": {
+   "word": [
+    {
+     "method": "POST",
+     "url": "https://api.siliconflow.cn/v1/chat/completions",
+     "body": {
+      "model": "deepseek-ai/DeepSeek-V4-Flash",
+      "messages": [
+       {
+        "role": "system",
+        "content": "{{system:word}}"
+       },
+       {
+        "role": "user",
+        "content": "serendipity"
+       }
+      ],
+      "temperature": 0.1,
+      "max_tokens": 750,
+      "response_format": {
+       "type": "json_object"
+      },
+      "enable_thinking": false
+     }
+    }
+   ],
+   "sentence": [
+    {
+     "method": "POST",
+     "url": "https://api.siliconflow.cn/v1/chat/completions",
+     "body": {
+      "model": "deepseek-ai/DeepSeek-V4-Flash",
+      "messages": [
+       {
+        "role": "system",
+        "content": "{{system:sentence}}"
+       },
+       {
+        "role": "user",
+        "content": "The committee postponed the vote until the next quarterly meeting"
+       }
+      ],
+      "temperature": 0.1,
+      "max_tokens": 800,
+      "response_format": {
+       "type": "json_object"
+      },
+      "enable_thinking": false
+     }
+    }
+   ],
+   "wordInContext": [
+    {
+     "method": "POST",
+     "url": "https://api.siliconflow.cn/v1/chat/completions",
+     "body": {
+      "model": "deepseek-ai/DeepSeek-V4-Flash",
+      "messages": [
+       {
+        "role": "system",
+        "content": "{{context:lookupWord}}"
+       },
+       {
+        "role": "user",
+        "content": "{\"term\":\"bank\",\"sentence\":\"We sat on the bank of the river and watched the boats.\",\"nearby\":\"It was a warm afternoon. We sat on the bank of the river and watched the boats.\"}"
+       }
+      ],
+      "temperature": 0.1,
+      "max_tokens": 1000,
+      "response_format": {
+       "type": "json_object"
+      },
+      "enable_thinking": false
+     }
+    }
+   ]
+  },
+  "groq": {
+   "word": [
+    {
+     "method": "POST",
+     "url": "https://api.groq.com/openai/v1/chat/completions",
+     "body": {
+      "model": "openai/gpt-oss-20b",
+      "messages": [
+       {
+        "role": "system",
+        "content": "{{system:word}}"
+       },
+       {
+        "role": "user",
+        "content": "serendipity"
+       }
+      ],
+      "temperature": 0.1,
+      "max_tokens": 750,
+      "response_format": {
+       "type": "json_object"
+      },
+      "reasoning_effort": "low"
+     }
+    }
+   ],
+   "sentence": [
+    {
+     "method": "POST",
+     "url": "https://api.groq.com/openai/v1/chat/completions",
+     "body": {
+      "model": "openai/gpt-oss-20b",
+      "messages": [
+       {
+        "role": "system",
+        "content": "{{system:sentence}}"
+       },
+       {
+        "role": "user",
+        "content": "The committee postponed the vote until the next quarterly meeting"
+       }
+      ],
+      "temperature": 0.1,
+      "max_tokens": 800,
+      "response_format": {
+       "type": "json_object"
+      },
+      "reasoning_effort": "low"
+     }
+    }
+   ],
+   "wordInContext": [
+    {
+     "method": "POST",
+     "url": "https://api.groq.com/openai/v1/chat/completions",
+     "body": {
+      "model": "openai/gpt-oss-20b",
+      "messages": [
+       {
+        "role": "system",
+        "content": "{{context:lookupWord}}"
+       },
+       {
+        "role": "user",
+        "content": "{\"term\":\"bank\",\"sentence\":\"We sat on the bank of the river and watched the boats.\",\"nearby\":\"It was a warm afternoon. We sat on the bank of the river and watched the boats.\"}"
+       }
+      ],
+      "temperature": 0.1,
+      "max_tokens": 1000,
+      "response_format": {
+       "type": "json_object"
+      },
+      "reasoning_effort": "low"
+     }
+    }
+   ]
+  },
+  "gemini": {
+   "word": [
+    {
+     "method": "POST",
+     "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent?key=<API_KEY>",
+     "body": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "{{system:word}}"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "serendipity"
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "temperature": 0.1,
+       "maxOutputTokens": 750,
+       "responseMimeType": "application/json"
+      }
+     }
+    }
+   ],
+   "sentence": [
+    {
+     "method": "POST",
+     "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent?key=<API_KEY>",
+     "body": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "{{system:sentence}}"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "The committee postponed the vote until the next quarterly meeting"
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "temperature": 0.1,
+       "maxOutputTokens": 800,
+       "responseMimeType": "application/json"
+      }
+     }
+    }
+   ],
+   "wordInContext": [
+    {
+     "method": "POST",
+     "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent?key=<API_KEY>",
+     "body": {
+      "systemInstruction": {
+       "parts": [
+        {
+         "text": "{{context:lookupWord}}"
+        }
+       ]
+      },
+      "contents": [
+       {
+        "role": "user",
+        "parts": [
+         {
+          "text": "{\"term\":\"bank\",\"sentence\":\"We sat on the bank of the river and watched the boats.\",\"nearby\":\"It was a warm afternoon. We sat on the bank of the river and watched the boats.\"}"
+         }
+        ]
+       }
+      ],
+      "generationConfig": {
+       "temperature": 0.1,
+       "maxOutputTokens": 1000,
+       "responseMimeType": "application/json"
+      }
+     }
+    }
+   ]
+  }
+ },
+ "adjustments": {
+  "openai": {
+   "gpt-6-luna": {
+    "model": "gpt-6-luna",
+    "messages": [],
+    "temperature": 0.1,
+    "max_completion_tokens": 750,
+    "reasoning_effort": "none"
+   },
+   "gpt-5-mini": {
+    "model": "gpt-5-mini",
+    "messages": [],
+    "max_completion_tokens": 750
+   },
+   "o3": {
+    "model": "o3",
+    "messages": [],
+    "max_completion_tokens": 750
+   },
+   "gpt-4.1-mini": {
+    "model": "gpt-4.1-mini",
+    "messages": [],
+    "temperature": 0.1,
+    "max_tokens": 750
+   }
+  },
+  "deepseek": {
+   "deepseek-flash": {
+    "model": "deepseek-flash",
+    "messages": [],
+    "temperature": 0.1,
+    "max_tokens": 750,
+    "thinking": {
+     "type": "disabled"
+    }
+   },
+   "deepseek-reasoner": {
+    "model": "deepseek-reasoner",
+    "messages": [],
+    "temperature": 0.1,
+    "max_tokens": 750,
+    "thinking": {
+     "type": "disabled"
+    }
+   }
+  },
+  "moonshot": {
+   "kimi-k2.6": {
+    "model": "kimi-k2.6",
+    "messages": [],
+    "max_completion_tokens": 750,
+    "thinking": {
+     "type": "disabled"
+    }
+   },
+   "kimi-k3": {
+    "model": "kimi-k3",
+    "messages": [],
+    "max_completion_tokens": 750
+   },
+   "moonshot-v1-8k": {
+    "model": "moonshot-v1-8k",
+    "messages": [],
+    "temperature": 0.1,
+    "max_tokens": 750
+   }
+  },
+  "zhipu": {
+   "glm-4-flash": {
+    "model": "glm-4-flash",
+    "messages": [],
+    "temperature": 0.1,
+    "max_tokens": 750
+   },
+   "glm-4.7-flash": {
+    "model": "glm-4.7-flash",
+    "messages": [],
+    "temperature": 0.1,
+    "max_tokens": 750,
+    "thinking": {
+     "type": "disabled"
+    }
+   }
+  },
+  "siliconflow": {
+   "deepseek-ai/DeepSeek-V4-Flash": {
+    "model": "deepseek-ai/DeepSeek-V4-Flash",
+    "messages": [],
+    "temperature": 0.1,
+    "max_tokens": 750,
+    "enable_thinking": false
+   },
+   "Qwen/Qwen3-8B": {
+    "model": "Qwen/Qwen3-8B",
+    "messages": [],
+    "temperature": 0.1,
+    "max_tokens": 750
+   }
+  },
+  "groq": {
+   "openai/gpt-oss-20b": {
+    "model": "openai/gpt-oss-20b",
+    "messages": [],
+    "temperature": 0.1,
+    "max_tokens": 750,
+    "reasoning_effort": "low"
+   },
+   "qwen/qwen3-32b": {
+    "model": "qwen/qwen3-32b",
+    "messages": [],
+    "temperature": 0.1,
+    "max_tokens": 750,
+    "reasoning_effort": "none"
+   },
+   "llama-3.3-70b-versatile": {
+    "model": "llama-3.3-70b-versatile",
+    "messages": [],
+    "temperature": 0.1,
+    "max_tokens": 750
+   }
+  },
+  "gemini": {
+   "gemini-3.5-flash-lite": {
+    "model": "gemini-3.5-flash-lite",
+    "messages": [],
+    "temperature": 0.1,
+    "max_tokens": 750
+   }
+  }
+ }
+}

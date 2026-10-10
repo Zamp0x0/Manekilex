@@ -1,0 +1,81 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  check:
+    name: Tests and checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js 22
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Read-only checks: syntax, manifest/package versions, shipped dictionary, repository hygiene.
+      # No API keys, no network calls, no writes to the dictionary.
+      - name: Repository checks
+        run: npm run check
+
+      - name: Tests
+        run: npm test
+
+      # The private extension archive (scripts/package-release.js): built from the commit twice, the
+      # two archives must be byte-identical, and the contents are verified (runtime files and
+      # licences only; manifest, page and service-worker references present). Nothing is uploaded,
+      # released or published.
+      - name: Private release archive (not for distribution)
+        run: |
+          node scripts/package-release.js --out "$RUNNER_TEMP/dist-a" | tee "$RUNNER_TEMP/package.txt"
+          node scripts/package-release.js --out "$RUNNER_TEMP/dist-b" > /dev/null
+          node scripts/package-release.js --verify "$RUNNER_TEMP"/dist-a/*.zip
+          cmp "$RUNNER_TEMP"/dist-a/*.zip "$RUNNER_TEMP"/dist-b/*.zip
+          echo "::notice title=Private archive, not for distribution::$(grep '^sha256' "$RUNNER_TEMP/package.txt")"
+
+  dependencies:
+    name: Dependency audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js 22
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 22
+
+      - name: Install dependencies (no install scripts)
+        run: npm ci --ignore-scripts
+
+      # Known advisories in the (development-only) npm dependencies, and registry signatures of
+      # what was installed. The browser libraries in lib/ are checked by tests/vendor-provenance.test.js
+      # and tests/pdfjs-vendor.test.js against their recorded SHA-256.
+      - name: npm audit
+        run: npm audit --audit-level=moderate
+
+      - name: npm audit signatures
+        run: npm audit signatures

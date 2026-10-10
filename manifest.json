@@ -1,0 +1,64 @@
+{
+  "manifest_version": 3,
+  "name": "Manekilex",
+  "version": "0.11.1",
+  "description": "选中英文后点击招财猫小球，用中文解释词义和例句。",
+  "permissions": ["storage", "unlimitedStorage", "tabs", "contextMenus", "sidePanel", "tabCapture", "activeTab"],
+  "host_permissions": [
+    "https://api.openai.com/*",
+    "https://api.deepseek.com/*",
+    "https://api.moonshot.cn/*",
+    "https://open.bigmodel.cn/*",
+    "https://api.siliconflow.cn/*",
+    "https://api.groq.com/*",
+    "https://generativelanguage.googleapis.com/*",
+    "https://streaming.assemblyai.com/*"
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "side_panel": {
+    "default_path": "lookup-panel.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["config.js", "lookup/dom-helpers.js", "lookup/render.js", "lookup/egg.js", "lookup/tts.js", "lookup/selection.js", "lookup/context.js", "lookup/runtime.js", "mk-lookup.js", "pdf-page-assistant.js", "content.js"],
+      "css": ["mk-buttons.css", "styles.css", "pdf-page-assistant.css"],
+      "run_at": "document_end",
+      "all_frames": true
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["icons/*.png"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self';"
+  },
+  "mime_types_handler": {
+    "application/pdf": {
+      "handler_url": "pdf-reader.html",
+      "can_embed": false
+    }
+  },
+  "options_page": "settings.html#usage",
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Manekilex 设置",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  }
+}

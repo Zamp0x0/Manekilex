@@ -1,0 +1,60 @@
+name: 问题报告 / Bug report
+description: Manekilex 的功能不正常
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        请不要在这里报告安全漏洞，见 SECURITY.md。也不要粘贴 API Key、私人网址或个人信息。
+  - type: textarea
+    id: what
+    attributes:
+      label: 发生了什么
+      description: 你看到了什么，原本期望看到什么。
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      description: 在哪里（网页、iframe、EPUB 阅读器、增强 PDF 阅读器、Chrome 自带 PDF 查看器、设置页、实时转译）做了什么。能公开的话附上网址或一个最小的测试页面。
+      placeholder: |
+        1. 打开 …
+        2. 选中 …
+        3. 点击 …
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Manekilex 版本或提交
+      placeholder: 0.11.1 / 提交 SHA
+    validations:
+      required: true
+  - type: input
+    id: chrome
+    attributes:
+      label: Chrome 版本与操作系统
+      placeholder: Chrome 155 / Windows 11
+    validations:
+      required: true
+  - type: dropdown
+    id: provider
+    attributes:
+      label: 模型服务商
+      options:
+        - 未配置（只用本地词典）
+        - OpenAI
+        - DeepSeek
+        - Moonshot
+        - 智谱
+        - SiliconFlow
+        - Groq
+        - Google Gemini
+        - 与模型无关
+  - type: textarea
+    id: logs
+    attributes:
+      label: 错误信息
+      description: 页面上的提示，或 chrome://extensions → Manekilex → Service Worker 的控制台输出。请先删掉其中的 Key 和私人内容。
+      render: text

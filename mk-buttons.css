@@ -1,0 +1,265 @@
+/* Manekilex shared button system */
+
+:root {
+  --mk-bg: #fffaf0;
+  --mk-bg-card: #fffdf7;
+  --mk-btn-primary-bg: #fff0cf;
+  --mk-btn-primary-bg-hover: #ffdf9c;
+  --mk-btn-secondary-bg: #fffaf0;
+  --mk-btn-danger-bg: #ffe8e4;
+  --mk-btn-danger-bg-hover: #ffd4cc;
+  --mk-text: #4f2f16;
+  --mk-text-muted: #8a6a45;
+  --mk-border: rgba(122, 74, 36, 0.22);
+  --mk-red: #d83424;
+  --mk-red-dark: #a82018;
+  --mk-gold: #e4a72f;
+  --mk-shadow: rgba(90, 53, 24, 0.12);
+  --mk-focus-ring: rgba(216, 52, 36, 0.35);
+}
+
+.mk-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin: 0;
+  padding: 0 16px;
+  min-height: 38px;
+  border: 1px solid var(--mk-border);
+  border-radius: 10px;
+  background: var(--mk-btn-secondary-bg);
+  color: var(--mk-text);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  box-shadow: 0 2px 6px var(--mk-shadow);
+  overflow: visible;
+  box-sizing: border-box;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.mk-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px var(--mk-shadow);
+}
+
+.mk-btn:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: 0 1px 3px var(--mk-shadow);
+}
+
+.mk-btn:focus-visible {
+  outline: 2px solid var(--mk-focus-ring);
+  outline-offset: 2px;
+}
+
+.mk-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.mk-btn-primary {
+  background: var(--mk-btn-primary-bg);
+  border-color: rgba(122, 74, 36, 0.28);
+}
+
+.mk-btn-primary:hover:not(:disabled) {
+  background: var(--mk-btn-primary-bg-hover);
+}
+
+.mk-btn-secondary {
+  background: var(--mk-btn-secondary-bg);
+}
+
+.mk-btn-secondary:hover:not(:disabled) {
+  background: #fff5e6;
+}
+
+.mk-btn-danger {
+  background: var(--mk-btn-danger-bg);
+  color: var(--mk-red-dark);
+  border-color: rgba(168, 32, 24, 0.25);
+}
+
+.mk-btn-danger:hover:not(:disabled) {
+  background: var(--mk-btn-danger-bg-hover);
+}
+
+.mk-btn-ghost {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.mk-btn-ghost:hover:not(:disabled) {
+  background: rgba(122, 74, 36, 0.06);
+  box-shadow: none;
+}
+
+.mk-btn-sm {
+  min-height: 30px;
+  padding: 0 10px;
+  font-size: 12px;
+  border-radius: 8px;
+}
+
+.mk-btn-md {
+  min-height: 38px;
+  padding: 0 16px;
+  font-size: 13px;
+}
+
+.mk-btn-lg {
+  min-height: 44px;
+  padding: 0 20px;
+  font-size: 14px;
+  border-radius: 12px;
+}
+
+.mk-btn-block {
+  display: flex;
+  width: 100%;
+}
+
+.mk-icon-btn {
+  padding: 0;
+  width: 36px;
+  min-width: 36px;
+  min-height: 36px;
+}
+
+/* Cat corner decorations */
+.mk-btn-cat {
+  overflow: visible;
+}
+
+.mk-btn-cat-left {
+  padding-left: 28px;
+}
+
+.mk-btn-cat-right {
+  padding-right: 28px;
+}
+
+.mk-btn-cat-img {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+  object-fit: contain;
+}
+
+.mk-btn-cat-left .mk-btn-cat-img {
+  left: -6px;
+  top: -18px;
+  width: 44px;
+  height: 44px;
+  object-position: left bottom;
+}
+
+.mk-btn-cat-right .mk-btn-cat-img {
+  right: -8px;
+  top: -20px;
+  width: 48px;
+  height: 48px;
+  object-position: right center;
+}
+
+/* Cat size/position variants (24px - 38px) */
+.mk-btn-cat-xs {
+  width: 24px;
+  height: 24px;
+}
+
+.mk-btn-cat-sm {
+  width: 28px;
+  height: 28px;
+}
+
+.mk-btn-cat-md {
+  width: 32px;
+  height: 32px;
+}
+
+.mk-btn-cat-lg {
+  width: 36px;
+  height: 36px;
+}
+
+.mk-btn-cat-xl {
+  width: 38px;
+  height: 38px;
+}
+
+.mk-btn-cat-left .mk-btn-cat-img.mk-btn-cat-sm {
+  left: -4px;
+  top: -12px;
+  object-position: left top;
+}
+
+.mk-btn-cat-left .mk-btn-cat-img.mk-btn-cat-md {
+  left: -4px;
+  top: -14px;
+  object-position: left top;
+}
+
+.mk-btn-cat-right .mk-btn-cat-img.mk-btn-cat-md {
+  right: -6px;
+  top: -14px;
+  object-position: right top;
+}
+
+.mk-btn-cat-right .mk-btn-cat-img.mk-btn-cat-lg {
+  right: -6px;
+  top: -16px;
+  object-position: right top;
+}
+
+.mk-btn-cat-right .mk-btn-cat-img.mk-btn-cat-xl {
+  right: -7px;
+  top: -18px;
+  object-position: right top;
+}
+
+.mk-book-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  width: 100%;
+  margin-top: auto;
+}
+
+.mk-book-actions .mk-btn {
+  width: 100%;
+  min-height: 36px;
+  padding: 0 8px;
+  font-size: 12px;
+}
+
+.mk-panel-actions {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.mk-panel-actions .mk-btn {
+  flex: 1;
+  min-height: 34px;
+  padding: 0 6px;
+  font-size: 12px;
+}
+
+.mk-popup-main-btn {
+  width: auto;
+  min-height: 42px;
+  font-size: 13px;
+}

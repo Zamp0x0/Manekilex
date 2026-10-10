@@ -1,0 +1,301 @@
+/* 增强 PDF 阅读器（pdf-reader.html）。PDF.js 的页面 / 文本层样式来自 lib/pdfjs/web/pdf_viewer.css。 */
+
+:root {
+  --mk-pdf-bg: #ecebe8;
+  --mk-pdf-bar: #fffaf0;
+  --mk-pdf-border: rgba(138, 106, 69, 0.22);
+  --mk-pdf-text: #4f2f16;
+  --mk-pdf-muted: #8a6a45;
+  --mk-pdf-accent: #d83424;
+  --mk-pdf-toolbar-h: 44px;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body.mk-pdf {
+  display: flex;
+  flex-direction: column;
+  background: var(--mk-pdf-bg);
+  color: var(--mk-pdf-text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 13px;
+  overflow: hidden;
+}
+
+.mk-pdf-toolbar {
+  flex: 0 0 var(--mk-pdf-toolbar-h);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 10px;
+  background: var(--mk-pdf-bar);
+  border-bottom: 1px solid var(--mk-pdf-border);
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.mk-pdf-tb-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 0 0 auto;
+}
+
+.mk-pdf-title {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+  font-weight: 600;
+}
+
+.mk-pdf-btn {
+  height: 28px;
+  min-width: 28px;
+  padding: 0 10px;
+  border: 1px solid var(--mk-pdf-border);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--mk-pdf-text);
+  font: inherit;
+  cursor: pointer;
+}
+
+.mk-pdf-btn.mk-pdf-icon {
+  padding: 0;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.mk-pdf-btn:hover:not(:disabled) {
+  border-color: var(--mk-pdf-accent);
+}
+
+.mk-pdf-btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.mk-pdf-btn:focus-visible,
+.mk-pdf-page-input:focus-visible,
+.mk-pdf-scale:focus-visible {
+  outline: 2px solid var(--mk-pdf-accent);
+  outline-offset: 1px;
+}
+
+.mk-pdf-page-input {
+  width: 44px;
+  height: 26px;
+  padding: 0 4px;
+  border: 1px solid var(--mk-pdf-border);
+  border-radius: 6px;
+  text-align: right;
+  font: inherit;
+}
+
+.mk-pdf-page-count {
+  min-width: 36px;
+  color: var(--mk-pdf-muted);
+}
+
+.mk-pdf-scale {
+  height: 28px;
+  border: 1px solid var(--mk-pdf-border);
+  border-radius: 6px;
+  background: #fff;
+  font: inherit;
+  color: var(--mk-pdf-text);
+}
+
+.mk-pdf-findbar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: var(--mk-pdf-bar);
+  border-bottom: 1px solid var(--mk-pdf-border);
+}
+
+.mk-pdf-findbar[hidden],
+.mk-pdf-notice[hidden],
+[hidden] {
+  display: none !important;
+}
+
+.mk-pdf-findbar input {
+  width: 240px;
+  height: 26px;
+  padding: 0 8px;
+  border: 1px solid var(--mk-pdf-border);
+  border-radius: 6px;
+  font: inherit;
+}
+
+.mk-pdf-find-status {
+  min-width: 70px;
+  color: var(--mk-pdf-muted);
+}
+
+.mk-pdf-notice {
+  padding: 8px 12px;
+  background: #fff6e8;
+  color: #b45309;
+  border-bottom: 1px solid var(--mk-pdf-border);
+  line-height: 1.45;
+}
+
+.mk-pdf-main {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+/* PDFViewer 要求滚动容器绝对定位 */
+.mk-pdf-viewer-container {
+  position: absolute;
+  inset: 0;
+  overflow: auto;
+  outline: none;
+}
+
+.mk-pdf-viewer-container .pdfViewer {
+  padding: 12px 0 24px;
+}
+
+.mk-pdf-state {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--mk-pdf-bg);
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.mk-pdf-card {
+  max-width: 460px;
+  padding: 24px 28px;
+  background: #fff;
+  border: 1px solid var(--mk-pdf-border);
+  border-radius: 12px;
+  box-shadow: 0 6px 24px rgba(79, 47, 22, 0.08);
+  text-align: center;
+  line-height: 1.55;
+}
+
+.mk-pdf-card h1 {
+  margin: 0 0 8px;
+  font-size: 18px;
+}
+
+.mk-pdf-card input[type="password"] {
+  width: 100%;
+  height: 32px;
+  margin: 6px 0 12px;
+  padding: 0 10px;
+  border: 1px solid var(--mk-pdf-border);
+  border-radius: 6px;
+  box-sizing: border-box;
+  font: inherit;
+}
+
+.mk-pdf-actions {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.mk-pdf-hint,
+.mk-pdf-note,
+.mk-pdf-detail {
+  color: var(--mk-pdf-muted);
+  font-size: 12px;
+}
+
+.mk-pdf-detail {
+  word-break: break-word;
+}
+
+.mk-pdf-error {
+  margin-top: 0;
+  font-weight: 600;
+  color: var(--mk-pdf-accent);
+}
+
+.mk-pdf-spinner {
+  width: 28px;
+  height: 28px;
+  margin: 0 auto 10px;
+  border: 3px solid rgba(216, 52, 36, 0.18);
+  border-top-color: var(--mk-pdf-accent);
+  border-radius: 50%;
+  animation: mk-pdf-spin 0.9s linear infinite;
+}
+
+@keyframes mk-pdf-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mk-pdf-spinner {
+    animation: none;
+  }
+}
+
+/* 打印：只输出打印容器里按页渲染好的图片 */
+.mk-print-container {
+  display: none;
+}
+
+@media print {
+  @page {
+    margin: 0;
+  }
+
+  body.mk-pdf {
+    display: block;
+    overflow: visible;
+    background: #fff;
+  }
+
+  body.mk-pdf > :not(.mk-print-container) {
+    display: none !important;
+  }
+
+  .mk-print-container {
+    display: block;
+  }
+
+  .mk-print-page {
+    break-after: page;
+    page-break-after: always;
+  }
+
+  .mk-print-page:last-child {
+    break-after: auto;
+    page-break-after: auto;
+  }
+
+  .mk-print-page img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 720px) {
+  .mk-pdf-title {
+    display: none;
+  }
+}

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manekilex PDF</title>
+  <link rel="stylesheet" href="lib/pdfjs/web/pdf_viewer.css" />
+  <link rel="stylesheet" href="mk-buttons.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="pdf-reader.css" />
+</head>
+<body class="mk-pdf" data-view="landing">
+  <header class="mk-pdf-toolbar" role="toolbar" aria-label="PDF 工具栏">
+    <div class="mk-pdf-tb-group">
+      <button type="button" class="mk-pdf-btn" id="openFileBtn" title="打开本地 PDF">打开</button>
+      <input type="file" id="fileInput" accept="application/pdf,.pdf" hidden />
+    </div>
+    <div class="mk-pdf-tb-group">
+      <button type="button" class="mk-pdf-btn mk-pdf-icon" id="prevPageBtn" title="上一页（P）" aria-label="上一页">‹</button>
+      <input type="text" class="mk-pdf-page-input" id="pageInput" inputmode="numeric" autocomplete="off" aria-label="页码" />
+      <span class="mk-pdf-page-count" id="pageCount">/ 0</span>
+      <button type="button" class="mk-pdf-btn mk-pdf-icon" id="nextPageBtn" title="下一页（N）" aria-label="下一页">›</button>
+    </div>
+    <div class="mk-pdf-tb-group">
+      <button type="button" class="mk-pdf-btn mk-pdf-icon" id="zoomOutBtn" title="缩小（Ctrl -）" aria-label="缩小">−</button>
+      <select class="mk-pdf-scale" id="scaleSelect" aria-label="缩放">
+        <option value="auto">自动缩放</option>
+        <option value="page-width">适合宽度</option>
+        <option value="page-fit">适合页面</option>
+        <option value="page-actual">实际大小</option>
+        <option value="0.5">50%</option>
+        <option value="0.75">75%</option>
+        <option value="1">100%</option>
+        <option value="1.25">125%</option>
+        <option value="1.5">150%</option>
+        <option value="2">200%</option>
+        <option value="3">300%</option>
+        <option value="4">400%</option>
+        <option value="custom" id="customScaleOption" hidden disabled></option>
+      </select>
+      <button type="button" class="mk-pdf-btn mk-pdf-icon" id="zoomInBtn" title="放大（Ctrl +）" aria-label="放大">+</button>
+    </div>
+    <div class="mk-pdf-title" id="docTitle"></div>
+    <div class="mk-pdf-tb-group">
+      <button type="button" class="mk-pdf-btn" id="findToggleBtn" title="在文档中查找（Ctrl F）">查找</button>
+      <button type="button" class="mk-pdf-btn" id="downloadBtn" title="下载原文件">下载</button>
+      <button type="button" class="mk-pdf-btn" id="printBtn" title="打印">打印</button>
+    </div>
+    <button type="button" class="mk-pdf-btn" id="nativeBtn" title="改用 Chrome 自带的 PDF 查看器打开这个文件（点右上角的猫咪可以回来）" hidden>Chrome 查看器</button>
+  </header>
+
+  <div class="mk-pdf-findbar" id="findBar" hidden>
+    <input type="search" id="findInput" placeholder="在文档中查找" aria-label="查找" autocomplete="off" />
+    <button type="button" class="mk-pdf-btn" id="findPrevBtn" title="上一个（Shift Enter）">上一个</button>
+    <button type="button" class="mk-pdf-btn" id="findNextBtn" title="下一个（Enter）">下一个</button>
+    <span class="mk-pdf-find-status" id="findStatus" aria-live="polite"></span>
+    <button type="button" class="mk-pdf-btn mk-pdf-icon" id="findCloseBtn" title="关闭查找（Esc）" aria-label="关闭查找">×</button>
+  </div>
+
+  <div class="mk-pdf-notice" id="notice" role="status" hidden></div>
+
+  <main class="mk-pdf-main">
+    <div class="mk-pdf-viewer-container" id="viewerContainer" tabindex="0">
+      <div class="pdfViewer" id="viewer"></div>
+    </div>
+
+    <section class="mk-pdf-state" id="statePanel" aria-live="polite">
+      <div class="mk-pdf-card" id="landingState">
+        <h1>Manekilex PDF 阅读器</h1>
+        <p>保留原排版阅读 PDF：选中英文后，点旁边的小猫即可查词。</p>
+        <p class="mk-pdf-note" id="landingNote" hidden></p>
+        <button type="button" class="mk-btn mk-btn-primary mk-btn-md" id="landingOpenBtn">打开本地 PDF</button>
+        <p class="mk-pdf-hint">也可以把 PDF 文件拖到这里。文件只在本机浏览器里打开，不会上传或保存。</p>
+      </div>
+      <div class="mk-pdf-card" id="loadingState" hidden>
+        <div class="mk-pdf-spinner" aria-hidden="true"></div>
+        <p id="loadingText">正在读取 PDF…</p>
+      </div>
+      <form class="mk-pdf-card" id="passwordForm" hidden>
+        <p id="passwordPrompt">这个 PDF 受密码保护，请输入打开密码。</p>
+        <input type="password" id="passwordInput" autocomplete="off" aria-label="PDF 密码" />
+        <div class="mk-pdf-actions">
+          <button type="submit" class="mk-btn mk-btn-primary mk-btn-sm" id="passwordSubmitBtn">打开</button>
+          <button type="button" class="mk-btn mk-btn-secondary mk-btn-sm" id="passwordCancelBtn">取消</button>
+        </div>
+        <p class="mk-pdf-hint">密码只用于本次打开，不会保存。</p>
+      </form>
+      <div class="mk-pdf-card" id="errorState" hidden>
+        <p class="mk-pdf-error" id="errorText"></p>
+        <p class="mk-pdf-detail" id="errorDetail" hidden></p>
+        <div class="mk-pdf-actions">
+          <button type="button" class="mk-btn mk-btn-primary mk-btn-sm" id="errorNativeBtn" hidden>用 Chrome 自带查看器打开</button>
+          <button type="button" class="mk-btn mk-btn-secondary mk-btn-sm" id="errorOpenBtn">打开本地 PDF</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="mk-print-container" id="printContainer" aria-hidden="true"></div>
+
+  <script src="config.js"></script>
+  <script src="lookup/dom-helpers.js"></script>
+  <script src="lookup/render.js"></script>
+  <script src="lookup/egg.js"></script>
+  <script src="lookup/tts.js"></script>
+  <script src="lookup/selection.js"></script>
+  <script src="lookup/context.js"></script>
+  <script src="lookup/runtime.js"></script>
+  <script src="pdf-reader/pdfjs-loader.js"></script>
+  <script src="pdf-reader/document.js"></script>
+  <script src="pdf-reader/viewer.js"></script>
+  <script src="pdf-reader/toolbar.js"></script>
+  <script src="mk-lookup.js"></script>
+  <script src="pdf-reader/context.js"></script>
+  <script src="pdf-reader/selection.js"></script>
+  <script src="pdf-reader/lookup-adapter.js"></script>
+  <script src="pdf-reader/app.js"></script>
+</body>
+</html>

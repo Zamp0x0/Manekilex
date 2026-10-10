@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manekilex · 设置</title>
+  <link rel="stylesheet" href="mk-buttons.css" />
+  <link rel="stylesheet" href="settings.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="brand-dot"></span>
+        <div>
+          <strong>Manekilex</strong>
+          <small>设置中心</small>
+        </div>
+      </div>
+      <nav class="nav" id="nav">
+        <button type="button" class="nav-item" data-section="appearance" hidden>小球颜色</button>
+        <button type="button" class="nav-item" data-section="models">模型与 API</button>
+        <button type="button" class="nav-item active" data-section="usage">流量统计</button>
+        <button type="button" class="nav-item" data-section="vocabulary">生词本</button>
+        <button type="button" class="nav-item" data-section="review">复习 <span class="nav-badge" id="reviewNavBadge" hidden></span></button>
+        <button type="button" class="nav-item" data-section="data">数据</button>
+        <button type="button" class="nav-item" data-section="live-transcribe">实时转译</button>
+        <button type="button" class="nav-item" data-section="reading">阅读</button>
+      </nav>
+      <p class="sidebar-note">API Key 仅保存在本机，请勿上传或分享。</p>
+    </aside>
+
+    <main class="main">
+      <header class="main-header">
+        <div class="main-header-top">
+          <h1 id="sectionTitle">流量统计</h1>
+          <div class="mk-top-widget">
+            <div class="mk-daily-quotes">
+              <p class="mk-quote-en" id="mkDailyEn">Give me six hours to chop down a tree and I will spend the first four sharpening the axe.</p>
+              <p class="mk-quote-author" id="mkDailyAuthor">— Abraham Lincoln</p>
+            </div>
+            <div class="mk-local-clock" id="mkLocalClock" aria-label="本地时间">
+              <div class="mk-clock-city" id="mkClockCity">Local</div>
+              <div class="mk-clock-time" id="mkClockTime">--:--:--</div>
+            </div>
+          </div>
+        </div>
+        <p id="sectionDesc">基于本机记录的请求日志，统计各模型用量。</p>
+      </header>
+      <div class="main-body" id="mainBody"></div>
+    </main>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="shared/providers.js"></script>
+  <script src="shared/benchmark-cases.js"></script>
+  <script src="vocab-review.js"></script>
+  <script src="provider-benchmark.js"></script>
+  <script src="daily-lines.js"></script>
+  <script src="lib/jszip.min.js"></script>
+  <script src="lib/marked.min.js"></script>
+  <script src="lib/mammoth.browser.min.js"></script>
+  <script src="pdf-reader/pdfjs-loader.js"></script>
+  <script src="lib/epub.min.js"></script>
+  <script src="book-store.js"></script>
+  <script src="importers/shared/import-limits.js"></script>
+  <script src="importers/shared/html-sanitize.js"></script>
+  <script src="importers/shared/chapter-split.js"></script>
+  <script src="importers/shared/pdf-utils.js"></script>
+  <script src="importers/epub-builder.js"></script>
+  <script src="importers/converters/txt-converter.js"></script>
+  <script src="importers/converters/markdown-converter.js"></script>
+  <script src="importers/converters/html-converter.js"></script>
+  <script src="importers/converters/docx-converter.js"></script>
+  <script src="importers/converters/pdf-text-converter.js"></script>
+  <script src="importers/converters/pdf-image-converter.js"></script>
+  <script src="importers/book-importer.js"></script>
+  <script src="live-transcribe.js"></script>
+  <script src="settings/core.js"></script>
+  <script src="settings/models.js"></script>
+  <script src="settings/benchmark.js"></script>
+  <script src="settings/appearance.js"></script>
+  <script src="settings/usage.js"></script>
+  <script src="settings/data.js"></script>
+  <script src="settings/transcription.js"></script>
+  <script src="settings/book-import.js"></script>
+  <script src="settings/reading.js"></script>
+  <script src="settings/vocabulary.js"></script>
+  <script src="settings/review.js"></script>
+  <script src="settings.js"></script>
+</body>
+</html>
