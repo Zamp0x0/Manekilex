@@ -1750,6 +1750,8 @@
     readerPrefs.widthMode = mode;
     readerPrefs.contentWidth = WIDTH_MODES[mode];
     updateWidthModeUI();
+    // 点击即保存（与字号一致）：排版要等防抖 + 重排，之前关闭/刷新页面不能丢掉这次选择
+    saveReaderPrefs();
 
     suppressLayoutResizeUntil = Date.now() + WIDTH_MODE_DEBOUNCE_MS + 800;
     document.documentElement.style.setProperty(
@@ -1777,7 +1779,6 @@
     if (!pendingWidthModeApply) return;
     pendingWidthModeApply = false;
     await applyWidthModeLayout();
-    saveReaderPrefs();
   }
 
   function resetEpubContainerInlineWidth() {

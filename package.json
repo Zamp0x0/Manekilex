@@ -5,7 +5,7 @@
   "description": "Manekilex Chrome extension (MV3, no build step). npm is only used for the Node test runner and the dictionary maintenance scripts; browser libraries are vendored in lib/ (see lib/README.md).",
   "scripts": {
     "test": "node --test",
-    "test:browser": "node --test --test-concurrency=1 tests/browser/pdf-reader.browser.js tests/browser/reader.browser.js tests/browser/settings-providers.browser.js tests/browser/lookup-hosts.browser.js",
+    "test:browser": "node --test --test-concurrency=1 tests/browser/pdf-reader.browser.js tests/browser/reader.browser.js tests/browser/settings-providers.browser.js tests/browser/srs-review.browser.js tests/browser/lookup-hosts.browser.js",
     "perf": "node tests/perf/baseline.perf.js",
     "build:dictionary": "node scripts/build-dictionary.js",
     "migrate:dictionary": "node scripts/migrate-dictionary-format.js",

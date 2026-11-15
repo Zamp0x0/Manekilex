@@ -283,7 +283,58 @@ function zehCreateLookupSelection(host) {
   /**
    * 飞书 / ChatGPT 等复杂编辑器：短选区跨 Text node 左右扩展到完整词。
    */
-  function expandAcrossTextNodesForShortSelection(selection, useDoc, originalText) {
+  /**
+   * 从文本位置沿 direction（"next" 向后 / "prev" 向前）走过 count 个字符，可跨相邻文本节点。
+   * 正好走到节点边界时停在下一个（"next"）或上一个（"prev"）有字符的节点上。走不到时返回 null。
+   */
+  function moveTextPoint(point, count, root, useDoc, direction) {
+    let node = point.node;
+    let offset = point.offset;
+    let left = count;
+    while (left > 0) {
+      const len = (node.textContent || "").length;
+      const room = direction === "next" ? len - offset : offset;
+      if (left < room) {
+        return { node, offset: direction === "next" ? offset + left : offset - left };
+      }
+      left -= room;
+      const adjacent = findAdjacentTextNode(node, root, useDoc, direction);
+      if (!adjacent) return left === 0 ? { node, offset: direction === "next" ? len : 0 } : null;
+      node = adjacent;
+      offset = direction === "next" ? 0 : (adjacent.textContent || "").length;
+    }
+    return { node, offset };
+  }
+
+  /**
+   * 去掉 Range 两端的空白（Windows 双击会把单词后面的空格一起选中）。
+   * 没有空白时原样返回 range；全是空白时返回 null；无法收窄（DOM 不支持等）时原样返回。
+   */
+  function trimRangeWhitespace(range, useDoc) {
+    const raw = String(range.toString() || "");
+    const lead = raw.length - raw.trimStart().length;
+    const trail = raw.length - raw.trimEnd().length;
+    if (!lead && !trail) return range;
+    if (!raw.trim()) return null;
+    try {
+      const root = getExpansionRoot(range, useDoc);
+      const startPoint = resolveTextPoint(range.startContainer, range.startOffset, "start");
+      const endPoint = resolveTextPoint(range.endContainer, range.endOffset, "end");
+      if (!startPoint || !endPoint) return range;
+      const start = lead ? moveTextPoint(startPoint, lead, root, useDoc, "next") : startPoint;
+      const end = trail ? moveTextPoint(endPoint, trail, root, useDoc, "prev") : endPoint;
+      if (!start || !end) return range;
+      const trimmed = useDoc.createRange();
+      trimmed.setStart(start.node, start.offset);
+      trimmed.setEnd(end.node, end.offset);
+      return String(trimmed.toString()) === raw.trim() ? trimmed : range;
+    } catch {
+      return range;
+    }
+  }
+
+  /** range：两端已去掉空白的选区（trimRangeWhitespace），从这里向两侧扫描，不会越过空格吞进相邻单词 */
+  function expandAcrossTextNodesForShortSelection(range, useDoc, originalText) {
     const noop = {
       text: originalText,
       expanded: false,
@@ -291,16 +342,8 @@ function zehCreateLookupSelection(host) {
       rect: null,
       range: null,
     };
-    if (!selection || selection.isCollapsed || selection.rangeCount !== 1) return noop;
+    if (!range || range.collapsed) return noop;
     if (!shouldAttemptCrossTextExpand(originalText)) return noop;
-
-    let range;
-    try {
-      range = selection.getRangeAt(0);
-    } catch {
-      return noop;
-    }
-    if (!range || range.startOffset === range.endOffset) return noop;
 
     const root = getExpansionRoot(range, useDoc);
     const startPoint = resolveTextPoint(range.startContainer, range.startOffset, "start");
@@ -361,11 +404,19 @@ function zehCreateLookupSelection(host) {
     const originalText = originalSlice != null ? String(originalSlice) : nodeText.slice(startOffset, endOffset);
     let start = Math.min(startOffset, endOffset);
     let end = Math.max(startOffset, endOffset);
-    const selectedRaw = nodeText.slice(start, end);
-    const trimmedSelected = selectedRaw.trim();
+    // 选区两端的空白不属于单词（Windows 上双击会选中「词 + 后面的空格」）：先收回到非空白字符，
+    // 再判断左右边界，否则会从空格之后继续扫描，把相邻单词并进来（harbour␠ → harbour was）
+    while (start < end && /\s/.test(nodeText[start])) start++;
+    while (end > start && /\s/.test(nodeText[end - 1])) end--;
+    if (start === end) {
+      return { start: startOffset, end: endOffset, text: originalText, expanded: false, originalText };
+    }
+    // 没有扩展时也返回去掉空白后的位置与文本，调用方据此得到一致的 text / Range / offsets
+    const unexpanded = { start, end, text: nodeText.slice(start, end), expanded: false, originalText };
+    const trimmedSelected = nodeText.slice(start, end);
 
     if (!shouldAttemptPartialWordExpand(trimmedSelected)) {
-      return { start: startOffset, end: endOffset, text: originalText, expanded: false, originalText };
+      return unexpanded;
     }
 
     const leftChar = start > 0 ? nodeText[start - 1] : "";
@@ -379,7 +430,7 @@ function zehCreateLookupSelection(host) {
       !isPartialExpandWordChar(rightChar)
     ) {
       logPartialExpansion("none", originalText, originalText, false, true);
-      return { start: startOffset, end: endOffset, text: originalText, expanded: false, originalText };
+      return unexpanded;
     }
 
     while (start > 0 && isPartialExpandWordChar(nodeText[start - 1])) start--;
@@ -389,19 +440,19 @@ function zehCreateLookupSelection(host) {
     const trimmedOrig = originalText.trim();
     const trimmedExp = expandedText.trim();
     if (!trimmedExp || !zehHasEnglish(trimmedExp)) {
-      return { start: startOffset, end: endOffset, text: originalText, expanded: false, originalText };
+      return unexpanded;
     }
     if (trimmedExp.length > 80) {
-      return { start: startOffset, end: endOffset, text: originalText, expanded: false, originalText };
+      return unexpanded;
     }
     if (
       trimmedExp.toLowerCase() === trimmedOrig.toLowerCase() ||
       zehNormalizeLookupText(trimmedOrig) === zehNormalizeLookupText(trimmedExp)
     ) {
-      return { start: startOffset, end: endOffset, text: originalText, expanded: false, originalText };
+      return unexpanded;
     }
     if (!trimmedExp.toLowerCase().includes(trimmedOrig.toLowerCase())) {
-      return { start: startOffset, end: endOffset, text: originalText, expanded: false, originalText };
+      return unexpanded;
     }
 
     logPartialExpansion("single-text-node", trimmedOrig, trimmedExp, true, true);
@@ -433,6 +484,11 @@ function zehCreateLookupSelection(host) {
       return noop;
     }
     if (!range || range.startOffset === range.endOffset) return noop;
+
+    // 两端空白不算选中的单词：之后的扩展、返回的 Range（语境、小球位置）都以去掉空白后的选区为准
+    const selectedRange = range;
+    range = trimRangeWhitespace(selectedRange, useDoc);
+    if (!range) return noop;
 
     const sameNode = range.startContainer === range.endContainer;
 
@@ -472,10 +528,12 @@ function zehCreateLookupSelection(host) {
 
     // 飞书 / ChatGPT 等：跨 Text node 短选区 fallback
     if (aggressiveBubbleMode && shouldAttemptCrossTextExpand(originalText)) {
-      const cross = expandAcrossTextNodesForShortSelection(selection, useDoc, originalText);
+      const cross = expandAcrossTextNodesForShortSelection(range, useDoc, originalText);
       if (cross.expanded) return cross;
     }
 
+    // 没有扩展、但去掉了两端空白：把收窄后的 Range 交给调用方，text（已 trim）、Range、矩形保持一致
+    if (range !== selectedRange) return { ...noop, range };
     return noop;
   }
 
@@ -486,9 +544,10 @@ function zehCreateLookupSelection(host) {
     const value = String(field.value || "");
     const rawSlice = value.slice(selStart, selEnd);
     const expanded = expandWordOffsetsInText(value, selStart, selEnd, rawSlice);
+    // 没有扩展时 start / end 也是去掉两端空白后的位置（与 text 一致）
     return {
-      start: expanded.expanded ? expanded.start : selStart,
-      end: expanded.expanded ? expanded.end : selEnd,
+      start: expanded.start,
+      end: expanded.end,
       text: expanded.text,
       expanded: expanded.expanded,
       originalText: rawSlice,

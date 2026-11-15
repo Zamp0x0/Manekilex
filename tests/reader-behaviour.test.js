@@ -143,6 +143,8 @@ test("reader leave: pagehide writes the position cache entry (shape and session)
   userScroll(page, 600);
   page.fire("pagehide"); // before the 300 ms debounce fires
   await waitForAsync(async () => (await page.record()).chapterScrollRatio === 0.5, 3000, "leave flush saved");
+  // the cache entry is written by its own chrome.storage get → set, not ordered with the store save
+  await waitForAsync(async () => Boolean(await cacheEntry(page)), 3000, "leave cache entry written");
   const entry = await cacheEntry(page);
   assert.deepEqual(Object.keys(entry).sort(), [
     "bookId", "chapterScrollRatio", "currentLocation", "currentSpineIndex", "lastReadAt",
@@ -239,7 +241,7 @@ test("reader settings: font size and width mode are saved and the next open star
   assert.equal(page.document.getElementById("fontSizeLabel").textContent, "20px");
   await page.click("fontIncBtn");
   await page.click("widthNarrowBtn");
-  await settle(100);
+  // both are stored when the click is handled, before the width layout's debounce: no wait here
   let prefs = (await page.local.get("zehReaderPrefs")).zehReaderPrefs;
   assert.equal(prefs.fontSize, 22);
   assert.equal(prefs.widthMode, "narrow");

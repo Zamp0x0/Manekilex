@@ -251,6 +251,21 @@ test("a word deleted elsewhere during the session is skipped, not shown", async 
   assert.equal(ui.session().reviewed, 1);
 });
 
+test("a card rated in another tab during the session is skipped here, not counted twice", async () => {
+  const ui = await setup();
+  ui.run("startReviewSession()");
+  ui.run("revealReviewCard()");
+  assert.equal((await ui.bg.dispatch({ type: "REVIEW_VOCAB", id: "apple", rating: "good", expectedReviewCount: 2 })).ok, true);
+  await waitFor(() => ui.settings.vocabulary().find((v) => v.id === "apple").review.reviewCount === 3, 1000, "settings sync");
+  await ui.run("rateReviewCard('hard')");
+  assert.match(ui.view(), /这个词刚在其他页面复习过，已跳过/);
+  assert.equal(ui.session().index, 1, "moved on to the next card");
+  assert.equal(ui.session().reviewed, 0);
+  const apple = ui.local.data[VOCAB].find((v) => v.id === "apple");
+  assert.equal(apple.review.reviewCount, 3, "only the other tab's rating is stored");
+  assert.equal(apple.review.lastRating, "good");
+});
+
 test("keyboard: Space / Enter reveal, 1–4 rate; keys typed into inputs are ignored", async () => {
   const ui = await setup();
   ui.run("startReviewSession()");

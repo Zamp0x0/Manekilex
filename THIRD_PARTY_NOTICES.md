@@ -64,15 +64,12 @@ verified individually; their notices are reproduced in §4 so that nothing requi
 | --- | --- | --- |
 | ECDICT (source of most Chinese short meanings and word forms in `data/dictionary_core.json`) | MIT, Copyright (c) 2025 Linwei | §4.4, [`data/README.md`](./data/README.md) |
 | `dic/wordfreq-en-25000-log.json` (word frequency list, consistent with wordfreq data) | CC BY-SA 4.0 (wordfreq data) | §4.5 |
-| `dic/google-10000-english-usa.txt` | No open licence; upstream cites LDC terms | see `data/README.md` |
-| `dic/The_Oxford_3000.txt` | Word list published by Oxford University Press; no licence granted | see `data/README.md` |
-| `poem/quotes.json` | Origin UNVERIFIED; individual quotes belong to their authors | see `data/README.md` |
 | `icons/*.png`, `assets/icon-source.png` (mascot and icons) | Made by the author with an AI image tool; the tool and its terms are not recorded (UNVERIFIED) | see `data/README.md` §3a |
 
 Items without a verified licence are listed here only so that they are not mistaken for
-MIT-licensed material. They are under review before any public release. `poem/quotes.json` is
-left out of the extension archive built by `scripts/package-release.js`; the `dic/` word lists
-are build inputs and are never packaged.
+MIT-licensed material. Two word lists (`dic/google-10000-english-usa.txt`, `dic/The_Oxford_3000.txt`)
+and a quote collection (`poem/quotes.json`) whose redistribution rights could not be verified have been
+removed from the repository; they remain visible in earlier public commits. See `data/README.md`.
 
 ## 4. Licence texts
 

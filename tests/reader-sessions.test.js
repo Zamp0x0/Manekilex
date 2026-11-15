@@ -117,6 +117,11 @@ test("F9: a position cache written by an older reader tab is not applied when th
 test("F9: the active tab's own position cache still wins over an older store record", async () => {
   const { tabA, tabB } = await twoTabs();
   const { local } = tabA.shared;
+  // tab B caches its bookmark jump on its own; let that write land before replacing the entry
+  await waitForAsync(async () => {
+    const entry = ((await local.get("zehReaderPositionCache")).zehReaderPositionCache || {}).b1;
+    return Boolean(entry && entry.sessionId === "session-B" && entry.currentSpineIndex === 4);
+  }, 5000, "tab B's own position cache");
   const rec = await tabB.record();
   await local.set({
     zehReaderPositionCache: {

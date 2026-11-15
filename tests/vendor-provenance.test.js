@@ -55,7 +55,7 @@ test("provenance: every data file, word list, quote collection and image is docu
     const base = path.posix.basename(file);
     return file.startsWith("icons/") && (docs.includes(`\`${base}\``) || /^css_\d\.png$/.test(base));
   };
-  const files = ["data", "dic", "poem", "icons", "assets"].flatMap(filesUnder).filter((f) => !f.endsWith("README.md"));
+  const files = ["data", "dic", "icons", "assets"].flatMap(filesUnder).filter((f) => !f.endsWith("README.md"));
   assert.ok(files.length >= 15);
   assert.deepEqual(files.filter((f) => !named(f)), [], "undocumented data or image files");
 });

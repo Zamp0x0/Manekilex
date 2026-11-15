@@ -8,7 +8,8 @@
  *   - the wheel past a chapter's end opens the next chapter, past its top the previous one (at
  *     its end); the new chapter is saved when the page is left;
  *   - the table of contents jumps and saves; its collapsed state survives a reload;
- *   - font size, width mode and paper colour are saved and applied after a reload;
+ *   - font size, width mode and paper colour are saved and applied after a reload, also when the
+ *     tab is closed right after the click;
  *   - a smaller window keeps the chapter and the reading ratio;
  *   - two tabs on one book: the newer tab owns the position, "back to shelf" in the older tab
  *     does not overwrite it;
@@ -228,7 +229,7 @@ test("reader: font size, width mode and paper colour are saved and applied again
   await page.click('.theme-choice[data-theme-type="paperBg"][data-color="#f3fbf3"]');
   await until(async () => (await fontSize()) === "22px", 5000, "font applied in the book");
   await until(async () => (await width()) === "900px", 5000, "narrow width applied");
-  // the width mode is saved once its new layout has been applied
+  // the width mode is saved when it is clicked; its layout follows
   const prefs = await until(async () => {
     const p = await page.evaluate(() => chrome.storage.local.get(["zehReaderPrefs", "zehReaderTheme"]));
     return p.zehReaderPrefs && p.zehReaderPrefs.widthMode === "narrow" ? p : null;
@@ -248,6 +249,30 @@ test("reader: font size, width mode and paper colour are saved and applied again
   await until(async () => (await bookBg()) === "rgb(243, 251, 243)", 5000, "paper colour inside the chapter");
   assert.deepEqual(page.errors, []);
   await page.close();
+});
+
+test("reader: a width mode and font size clicked just before the tab is closed are there when the book is opened again", opts, async () => {
+  await env.sw.evaluate(() => chrome.storage.local.remove("zehReaderPrefs")); // the test above saved narrow / 22px
+  const id = await addLongBook();
+  const page = await openReader(id);
+  await readyAt(page, "orchard");
+  assert.equal(await page.textContent("#fontSizeLabel"), "20px");
+  assert.equal(await page.$eval("#widthWideBtn", (b) => b.classList.contains("is-active")), true);
+  await page.click("#fontIncBtn");
+  await page.click("#widthNarrowBtn");
+  // close at once: the narrow layout has not been applied yet (it waits for a debounce and a reflow)
+  await page.close();
+
+  const again = await openReader(id);
+  await readyAt(again, "orchard");
+  assert.equal(await again.textContent("#fontSizeLabel"), "22px");
+  assert.equal(await again.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue("--reader-content-width").trim()), "900px");
+  assert.equal(await again.$eval("#widthNarrowBtn", (b) => b.classList.contains("is-active")), true);
+  const { zehReaderPrefs } = await again.evaluate(() => chrome.storage.local.get("zehReaderPrefs"));
+  assert.equal(zehReaderPrefs.widthMode, "narrow");
+  assert.equal(zehReaderPrefs.fontSize, 22);
+  assert.deepEqual(again.errors, []);
+  await again.close();
 });
 
 test("reader: a smaller window keeps the chapter and the reading ratio", opts, async () => {

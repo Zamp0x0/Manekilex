@@ -76,14 +76,14 @@ test("package: everything the manifest, the pages and the service worker load is
   }
 });
 
-test("package: the unverified quote collection stays out, and the marker says so", { skip: SKIP }, () => {
+test("package: the quote collection is not in the repository or the archive", { skip: SKIP }, () => {
   const { files, commit } = headPackage();
   assert.deepEqual(pkg.EXCLUDED_PENDING_RIGHTS, ["poem/quotes.json"]);
   assert.ok(!files.has("poem/quotes.json"));
   const marker = files.get(pkg.MARKER).toString("utf8");
   assert.match(marker, /NOT FOR DISTRIBUTION/);
   assert.match(marker, new RegExp(`Commit: ${commit}`));
-  assert.match(marker, /- poem\/quotes\.json/);
+  assert.doesNotMatch(marker, /- poem\/quotes\.json/); // the file is no longer in the repository
 });
 
 test("package: verification rejects tests, local files, unverified data, missing licences and missing scripts", { skip: SKIP }, () => {

@@ -117,7 +117,7 @@ M5 按「谁用」拆 `config.js`：`shared/` 与 `lookup/` 文件都紧跟在 `
 | `settings/*.js` | 设置页按分区拆分的经典脚本（M6），`settings.html` 依次加载 `core` → `models` → `benchmark` → `appearance` → `usage` → `data` → `transcription` → `book-import` → `reading` → `vocabulary` → `review`，最后是 `settings.js`。它们共享设置页的全局作用域，加载时只声明（`benchmark.js` 的 `beforeunload` 除外）；`settings.js` 只剩启动加载、导航与页面级监听、时钟。`core.js` 放分区元数据与 `switchSection`、扩展失效保护、storage 包装和页面主题，各分区之间只通过这些共用函数、storage 和 service worker 消息联系 |
 | `live-transcribe.js` / `live-transcribe-worklet.js` | AssemblyAI 流式听写 + 同传窗口；16kHz PCM AudioWorklet。每次开始录音建立一个会话，会话记下自己打开的 WebSocket、音频流和 AudioContext：停止、新的开始或提前返回只释放这个会话的资源，旧 socket 的事件不影响新会话 |
 | `popup.html/js` | 全局开关、标签页音频捕获入口 |
-| `daily-lines.js` | 设置页随机名言（`poem/quotes.json`） |
+| `daily-lines.js` | 设置页「每日一句」（`poem/quotes.json` 已从公开仓库移除，缺少时显示内置的一句） |
 
 ### EPUB 阅读器
 
@@ -156,7 +156,7 @@ File → converters/{txt,markdown,html,docx,pdf-text,pdf-image}-converter.js
 |------|------|
 | `data/dictionary_core.json` | 运行时词典，25,518 条，~19.7MB，SW 按需 fetch 后建 Map + forms 反向索引 |
 | `lib/` | epub.js 0.3.93、JSZip 3.10.1、mammoth 1.12.0、marked 18.0.5、PDF.js 6.4.299（`lib/pdfjs/`；来源与 SHA-256 校验见 `lib/README.md`） |
-| `icons/`、`assets/`、`poem/` | 图标、源图（不进扩展包）、名言（许可未核实，暂不进扩展包，见 `docs/RELEASE.md`） |
+| `icons/`、`assets/` | 图标、源图（`assets/` 不进扩展包） |
 
 ---
 

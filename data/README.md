@@ -38,13 +38,13 @@ dic/ecdict.csv ──────┘                                     （ecdi
 | 文件 | 用途 | 运行时需要 | 来源 | 许可 / 状态 |
 | --- | --- | --- | --- | --- |
 | `dic/ecdict.csv`（不在仓库内） | 释义、音标、词形 | 否 | [skywind3000/ECDICT](https://github.com/skywind3000/ECDICT) | MIT，Copyright (c) 2025 Linwei。当年下载的具体版本 **UNVERIFIED** |
-| `dic/google-10000-english-usa.txt` | 词表（取前 8,000） | 否 | 与 [first20hours/google-10000-english](https://github.com/first20hours/google-10000-english) 同名文件逐字节相同 | 无开源许可。上游说明数据来自 LDC 发行的 Google Web Trillion Word Corpus，仅说明教育、个人、研究用途可用，不建议未经 LDC 授权的商业使用。**公开发布前需替换** |
-| `dic/The_Oxford_3000.txt` | 词表 | 否 | Oxford 3000 是牛津大学出版社发布的词表；本文件的下载来源 **UNVERIFIED** | 未见任何再分发许可。**公开发布前需替换** |
+| `dic/google-10000-english-usa.txt`（**已从公开仓库移除**） | 词表（取前 8,000），只用于当初选词 | 否 | 与 [first20hours/google-10000-english](https://github.com/first20hours/google-10000-english) 同名文件逐字节相同 | 无开源许可（上游说明数据来自 LDC 的 Google Web Trillion Word Corpus）。因此不再随仓库分发；较早的公开提交中仍可见 |
+| `dic/The_Oxford_3000.txt`（**已从公开仓库移除**） | 词表，只用于当初选词 | 否 | Oxford 3000 是牛津大学出版社发布的词表；本文件的下载来源 **UNVERIFIED** | 未见任何再分发许可。因此不再随仓库分发；较早的公开提交中仍可见 |
 | `dic/wordfreq-en-25000-log.json` | 词表（25,000 高频词，自然对数词频） | 否 | 与 [wordfreq](https://github.com/rspeer/wordfreq)（Robyn Speer）英文数据一致：23,855 个词与 wordfreq 当前 top 25,000 重合，多个词的数值等于 ln(词频)。生成脚本与 wordfreq 版本 **UNVERIFIED** | wordfreq 数据为 CC BY-SA 4.0，本文件按 CC BY-SA 4.0 提供，署名见 `THIRD_PARTY_NOTICES.md` §4.5 |
 | `dic/manual-core-words.txt` | 手动补充词（102 个） | 否 | 作者手工整理 | 第一方内容，随项目 MIT |
-| `poem/quotes.json` | 设置页「每日一句」（`daily-lines.js`） | 是（可选功能） | 1,655 条名言，704 位作者；只有 100 条带 `source` 链接（多为 goodreads 等名言网站）。整体来源 **UNVERIFIED** | 汇编来源与许可不明；部分作者在世或作品仍受版权保护。**公开发布前需替换或删除** |
+| `poem/quotes.json`（**已从公开仓库移除**） | 设置页「每日一句」（`daily-lines.js`） | 否（缺少时显示内置的一句） | 1,655 条名言的汇编，整体来源 **UNVERIFIED** | 汇编来源与许可不明，因此不再随仓库或扩展包分发；较早的公开提交中仍可见 |
 
-ECDICT 的 CSV 自带 `oxford`（牛津 3000 标记）、`bnc`、`frq`（语料库词频排名）列。以后可以改用这些列选词，替换上面两份许可不明的词表。
+ECDICT 的 CSV 自带 `oxford`（牛津 3000 标记）、`bnc`、`frq`（语料库词频排名）列。以后可以改用这些列选词，代替上面两份已移除的词表。在那之前，`npm run build:dictionary` 需要这两份文件，所以无法直接在公开仓库里重新构建词典；运行时使用的 `data/dictionary_core.json` 不受影响。
 
 ## 3a. 图片
 
@@ -53,6 +53,8 @@ ECDICT 的 CSV 自带 `oxford`（牛津 3000 标记）、`bnc`、`frq`（语料�
 | `icons/icon16.png`、`icon32.png`、`icon48.png`、`icon128.png` | 扩展图标 | 是 | 作者借助 AI 图像工具生成 | 生成工具及其使用条款未记录（**UNVERIFIED**），公开发布前由作者确认 |
 | `icons/css_1.png` … `css_5.png`、`icons/lucky1.png`、`icons/lucky2.png`、`icons/rename.png` | 招财猫小球、彩蛋、设置页插图 | 是 | 同上 | 同上 |
 | `assets/icon-source.png` | 图标源图 | 否 | 同上 | 同上 |
+
+`docs/images/*.png` 是 README 和 `docs/SHOWCASE.md` 用的界面截图（11 张）：在 Chrome 里运行真实的 0.11.1 扩展截取，未配置任何 API Key、无网络，所以查词面板只显示本地词典结果，界面代码没有改动。画面内容：网页文字是为截图写的原创短文；书架和阅读器里是公有领域作品的开头片段（Jane Austen、Herman Melville、Lewis Carroll）；PDF 是用 Abraham Lincoln 的葛底斯堡演说（公有领域）生成的演示文件；生词本里只有截图时通过面板按钮加入的 4 个演示词；流量统计图使用写入本地存储的演示用量记录，没有发出任何模型请求。界面中的招财猫图片与上表相同。
 
 这些 PNG 只含 `sRGB` / `pHYs` 块，没有记录生成工具的元数据。`icons/lucky.png` 是作者本地文件，被 `.gitignore` 忽略，不在仓库和扩展包里。
 
@@ -74,7 +76,7 @@ ECDICT 的 CSV 自带 `oxford`（牛津 3000 标记）、`bnc`、`frq`（语料�
 - 在作者享有权利的范围内，`dictionary_core.json` 随项目以 MIT 许可提供（见根目录 `LICENSE`）。
 - 来自 ECDICT 的部分仍受 ECDICT 的 MIT 许可约束，必须保留其版权与许可声明（`THIRD_PARTY_NOTICES.md` §4.4）。
 - AI 生成部分见 §4。
-- 词条选择参考了 §3 中许可不明的词表。词表只用于决定收录哪些常见词，没有复制其中的释义或其他文字；这一点是否需要进一步处理，留待公开发布前决定。
+- 词条选择曾参考 §3 中两份已移除的词表。它们只用于决定收录哪些常见词，词典没有复制其中的释义或其他文字。
 
 ## 7. 重新生成
 
@@ -87,4 +89,4 @@ AI 输出不确定，重新生成的结果不会与当前文件完全相同。
 
 ## 8. 发布包
 
-Chrome 扩展运行时只需要 `data/dictionary_core.json`。`dic/`、`scripts/`、`tests/`、`assets/` 是开发用文件，不打进扩展包。`poem/quotes.json` 在许可核实之前也不打进扩展包（设置页「每日一句」改为显示内置的一句）。打包方法见 [`docs/RELEASE.md`](../docs/RELEASE.md)。
+Chrome 扩展运行时只需要 `data/dictionary_core.json`。`dic/`、`scripts/`、`tests/`、`assets/` 是开发用文件，不打进扩展包。`poem/quotes.json` 已从公开仓库移除，也不打进扩展包（设置页「每日一句」显示内置的一句）。打包方法见 [`docs/RELEASE.md`](../docs/RELEASE.md)。

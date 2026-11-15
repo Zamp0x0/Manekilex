@@ -4,6 +4,8 @@
  *
  *   - an ordinary web page: double-click a word → cat → dictionary-first panel → context
  *     enhancement from the provider stub → vocabulary entry with the page URL;
+ *   - a word selected together with the space before or after it (what a double-click selects on
+ *     Windows), made with a real mouse drag, is looked up as that word alone;
  *   - iframes: a same-origin frame (its cat and panel go to the top document) and two
  *     cross-origin frames (UI stays in the frame); lookups in different frames overlap and
  *     finish in the opposite order, and each panel shows its own word;
@@ -321,6 +323,60 @@ test("web page: cat → dictionary-first panel → context enhancement → vocab
   assert.equal(ctx.sentence, "The old harbour was busy at dawn.");
   assert.equal(ctx.sourceType, "web");
   assert.equal(entry.pageUrl || ctx.pageUrl, `${server.origin}/article.html`);
+  assert.deepEqual(page.errors, []);
+  await page.close();
+});
+
+/** Select [from, to) of `word`'s paragraph text with a real mouse drag (left to right) */
+async function dragSelect(page, word, from, to) {
+  const at = await page.evaluate(
+    ({ w, from, to }) => {
+      const p = [...document.querySelectorAll("p")].find((el) => el.textContent.includes(w));
+      const node = p.firstChild;
+      const i = node.nodeValue.indexOf(w);
+      const rect = (a, b) => {
+        const r = document.createRange();
+        r.setStart(node, i + a);
+        r.setEnd(node, i + b);
+        const box = r.getBoundingClientRect();
+        return { left: box.left, right: box.right, y: box.top + box.height / 2 };
+      };
+      // start on the left half of the first character, end on the right half of the last one
+      const first = rect(from, from + 1);
+      const last = rect(to - 1, to);
+      return { x0: first.left + (first.right - first.left) * 0.25, x1: last.right - (last.right - last.left) * 0.25, y: first.y };
+    },
+    { w: word, from, to }
+  );
+  await page.mouse.move(at.x0, at.y);
+  await page.mouse.down();
+  await page.mouse.move(at.x1, at.y, { steps: 8 });
+  await page.mouse.up();
+  return page.evaluate(() => String(getSelection()));
+}
+
+test("a word selected with the space next to it (Windows double-click) is looked up alone", opts, async () => {
+  const page = await webTab("/article.html");
+  // "harbour" sits in "old harbour was": word + following space (what a Windows double-click
+  // selects) and preceding space + word, both made with the real mouse. Spaces on both sides are
+  // covered by tests/selection-whitespace.test.js.
+  for (const [from, to, label] of [
+    [0, 8, "harbour + space"],
+    [-1, 7, "space + harbour"],
+  ]) {
+    await clearLookupCache();
+    if (await panelCount(page.mainFrame())) {
+      await page.mainFrame().evaluate(() => document.body.focus());
+      await page.keyboard.press("Escape");
+      await until(async () => (await panelCount(page.mainFrame())) === 0, 3000, "panel closed");
+    }
+    const selected = await dragSelect(page, "harbour", from, to);
+    assert.equal(selected, ARTICLE.slice(ARTICLE.indexOf("harbour") + from, ARTICLE.indexOf("harbour") + to), `${label}: the mouse selected it`);
+    const explain = await clickCat(page, page.mainFrame(), label);
+    assert.equal(explain.text, "harbour", label);
+    assert.equal(explain.context.sentence, "The old harbour was busy at dawn.", label);
+    await until(async () => /港口|海港/.test(await panelText(page.mainFrame())), 8000, `${label}: dictionary meaning`);
+  }
   assert.deepEqual(page.errors, []);
   await page.close();
 });

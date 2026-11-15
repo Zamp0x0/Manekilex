@@ -32,8 +32,12 @@ function updateReviewBadge() {
 }
 
 function startReviewSession() {
+  const ids = computeReviewQueue().session;
   reviewSession = {
-    ids: computeReviewQueue().session,
+    ids,
+    // 每张卡开始这一轮时的复习次数：评分时按它做版本检查。storage 更新会刷新 vocabulary，
+    // 若改用最新计数，另一个页面刚评过的卡会被再次计入。
+    counts: Object.fromEntries(ids.map((id) => [id, findVocabById(id)?.review?.reviewCount ?? 0])),
     index: 0,
     revealed: false,
     pending: false,
@@ -106,7 +110,7 @@ async function rateReviewCard(rating) {
       type: "REVIEW_VOCAB",
       id: item.id,
       rating,
-      expectedReviewCount: item.review.reviewCount,
+      expectedReviewCount: Number.isInteger(s.counts?.[item.id]) ? s.counts[item.id] : item.review.reviewCount,
     });
   } catch (error) {
     if (isInvalidatedError(error?.message)) markExtensionDead();
@@ -117,6 +121,7 @@ async function rateReviewCard(rating) {
     // 先用返回的新状态更新本地（storage.onChanged 随后会推来同样的数据）
     const review = resp.review;
     if (review) vocabulary = vocabulary.map((v) => (v.id === item.id ? { ...v, review } : v));
+    if (review && s.counts) s.counts[item.id] = review.reviewCount;
     if (resp.ok) s.reviewed += 1;
     advanceReviewSession(resp.ok ? "" : "这个词刚在其他页面复习过，已跳过");
     return;
