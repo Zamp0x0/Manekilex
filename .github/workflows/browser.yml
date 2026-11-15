@@ -57,7 +57,7 @@ jobs:
           "$CHROME" --version
           echo "::notice title=Chrome for Testing::$("$CHROME" --version)"
           echo "MK_BROWSER_PATH=$CHROME" >> "$GITHUB_ENV"
-          npm install --no-save --no-package-lock playwright-core@1.56.1
+          npm install --no-save --no-package-lock playwright-core@1.63.0
 
       - name: Build and unpack the private release archive
         if: matrix.extension == 'release-archive'
